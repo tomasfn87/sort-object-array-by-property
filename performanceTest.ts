@@ -22,19 +22,19 @@ console.log(` -> { NewLongArray(10e6, 's') }\n    { ${showTime(t4 - t3)} }`);
 // STRING
 console.log()
 const t5 = performance.now();
-const arrArrString = NewArrOfArrs(NewLongArray, 50000, 5, 's');
+const arrArrString = NewArrOfArrs(50000, NewLongArray, 5, 's');
 const t6 = performance.now();
 console.log(
-  ` -> { const arrArrString = NewArrOfArrs(NewLongArray, 50000, 5, 's') }\n    { ${showTime(t6 - t5)} }`
+  ` -> { const arrArrString = NewArrOfArrs(50000, NewLongArray, 5, 's') }\n    { ${showTime(t6 - t5)} }`
 );
 
 // NUMBER
 console.log()
 const t7 = performance.now();
-const arrArrNumber = NewArrOfArrs(NewLongArray, 50000, 5);
+const arrArrNumber = NewArrOfArrs(50000, NewLongArray, 5);
 const t8 = performance.now();
 console.log(
-  ` -> { const arrArrNumber = NewArrOfArrs(NewLongArray, 50000, 5) }\n    { ${showTime(t8 - t7)} }`
+  ` -> { const arrArrNumber = NewArrOfArrs(50000, NewLongArray, 5) }\n    { ${showTime(t8 - t7)} }`
 );
 
 // STRING

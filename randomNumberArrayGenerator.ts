@@ -13,8 +13,8 @@ export const NewLongArray = (arrLen:Number, type:'s'|'n' = 'n'):[] => {
 }
 
 export const NewArrOfArrs = (
-  arrGeneratorFunc:Function,
   arrArrLength:Number,
+  arrGeneratorFunc:Function,
   eachArrLength:Number,
   eachArrOptions?:String
 ):[][] => {
