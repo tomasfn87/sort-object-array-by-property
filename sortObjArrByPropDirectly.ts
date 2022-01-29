@@ -4,7 +4,7 @@ export default function sortObjectArrByPropDirectly<Type>(
   reverse: 's' | 'S' | 'r' | 'R' = 's'
 ):Type[] {
 
-  let sortedObjectArray:Type[] = objArr;
+  let sortedObjectArray:Type[] = objArr.map(x => x);
   let values:string[] | number[] | any[] = [];
 
   objArr.forEach((obj:string | number | any):void => {
