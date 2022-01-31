@@ -1,17 +1,19 @@
+type value = string | number | any;                                  // * 'value'  : ideally a string or a number through which the list will be sorted, or some kind of data that can be turned into a string
+type values = value[] | value[][];                                   // * 'values' : an array of 'value' or an array of arrays of 'value', used to sort a 'indices'
+type index = number;                                                 // * 'index'  : a number used to index a position in an array
+type indices = index[];                                              // * 'indices': an array of 'index'
+
 export default function sortObjectArrByProps<Type>(                  // 0) Sort Object Array By Properties takes:
   objArr: Type[] | any[],                                            // 0.1) an array of objects or an array of arrays, that will be sorted according to:
-  objProps:                                                          // 0.2) 0.2.1) two or all of its properties, 0.2.2) a single property
-    string[] | number[] |                                            // 0.2.1.1) an array of strings, 0.2.1.2) an array of numbers
-    string | number,                                                 // 0.2.2.1) a number, 0.2.2.2) a string
+  objProps:                                                          // 0.2) 0.2.1) between two and all their properties' values, 0.2.2) a single property's values
+    value[]                                                          // 0.2.1.1) an array of strings, 0.2.1.2) an array of numbers
+    | value,                                                         // 0.2.2.1) a number, 0.2.2.2) a string
   reverse: 's' | 'S' | 'r' | 'R' = 's'                               // 0.3.1) 's' -> standard, ascending order; 0.3.2) 'r' -> reverse, descending order: will reverse 'sortedObjectArray'
   ):Type[] | any[] {                                                 // 0.4) will return the items of 'objArr' ordered using 'objProps', leaving the original array untouched
 
-  type value = string | number | any                                 // type definition: * 'value'
-  type values = value[] | value[][]                                  //                  * 'values'
-
   let sortedObjectArray:Type[] = [];                                 // will be used to mount the ordered array after ordering a list of values (2) or a list of lists of values (1)
-  let values:values = [];                                            // will store the values used to sort the list; may sort all values if all properties are informed to 'objProps'
-  let indices:number[] = [];                                         // will store the indices of the objects or arrays to mount 'sortedObjectArray' before the function returns
+  let values:values = [];                                            // will store the values according to which the list will be sorted; may sort according to all values if all properties are informed to 'objProps'
+  let indices:indices = [];                                          // will store the indices of the objects or arrays to mount 'sortedObjectArray' before the function returns
   
   if (Array.isArray(objProps)) {                                     // 1) Sort by multiple properties
     for (let i=0; i < objArr.length; i++) {                          // 1.1) for each item of argument 'objArr'
@@ -24,12 +26,12 @@ export default function sortObjectArrByProps<Type>(                  // 0) Sort 
       }
     }
   } else {                                                           // 2) Sort by a single property
-    objArr.forEach((obj:Type | any, index:number):void => {          // 2.1) for each item of argument 'objArr'
+    objArr.forEach((obj:Type | any, i:index):void => {               // 2.1) for each item of argument 'objArr'
       typeof objProps === 'string'                                   // 2.1.1) if 'objProps' receives a string
       || typeof objProps === 'number'                                // 2.1.1') or a number
         ? values.push(obj[objProps])                                 // 2.1.1.1) add it to 'values' as it is
         : values.push(obj[objProps].toString());                     // 2.1.1.2) else (try to) turn it into a string and add it to 'values'
-      indices.push(index);                                           // 2.1.2) add each item's index to 'indices'
+      indices.push(i);                                               // 2.1.2) add each item's index to 'indices'
     });
   }
 
@@ -56,7 +58,7 @@ export default function sortObjectArrByProps<Type>(                  // 0) Sort 
           [values[j], values[j+1]] = [values[j+1], values[j]];       // 1.3.2.1.2.1) switch 'values'
           [indices[j], indices[j+1]] = [indices[j+1], indices[j]];   // 1.3.2.1.2.2) switch 'indices'
           k = 0; j++;                                                // 1.3.2.1.2.3) restart properties; check next value
-        } else if (values[j][k] < values[j+1][k]) {                  // 1.3.2.1.3) Case three: first object's value < second object's value: means already sorted
+        } else {                                                     // 1.3.2.1.3) Case three: first object's value < second object's value: already sorted, nothing to do
           j++;                                                       // 1.3.2.1.3.1) check next value
         }
       }
