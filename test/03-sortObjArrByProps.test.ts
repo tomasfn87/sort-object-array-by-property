@@ -1,6 +1,29 @@
 import { expect } from "chai";
 import sortObjectArrByProps from "../sortObjArrByProps";
-import { objArr, arrArr } from "./01-sortObjArrByPropIndexing.test";
+
+const objArr = [
+  { a: 7, b: 5 },
+  { a: 9, b: 2 },
+  { a: 1, b: 7 },
+  { a: 4, b: 1 },
+  { a: 6, b: 3 },
+  { a: 5, b: 4 },
+  { a: 2, b: 8 },
+  { a: 3, b: 6 },
+  { a: 8, b: 9 }
+]
+
+const arrArr = [
+  [ 7, 5, 2, 3 ],
+  [ 9, 2, 4, 5 ],
+  [ 1, 7, 5, 9 ],
+  [ 4, 1, 7, 1 ],
+  [ 6, 3, 1, 4 ],
+  [ 5, 4, 9, 7 ],
+  [ 2, 8, 3, 2 ],
+  [ 3, 6, 8, 6 ],
+  [ 8, 9, 6, 8 ]
+]
 
 const objArr2 = [
   { a: 1, b: 1, c: 2 },

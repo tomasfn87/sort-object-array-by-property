@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import sortObjectArrByPropIndexing from "../sortObjArrByPropIndexing";
 
-export const objArr = [
+const objArr = [
   { a: 7, b: 5 },
   { a: 9, b: 2 },
   { a: 1, b: 7 },
@@ -13,7 +13,7 @@ export const objArr = [
   { a: 8, b: 9 }
 ]
 
-export const arrArr = [
+const arrArr = [
   [ 7, 5, 2, 3 ],
   [ 9, 2, 4, 5 ],
   [ 1, 7, 5, 9 ],
