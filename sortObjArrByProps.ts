@@ -15,7 +15,7 @@ export default function sortObjectArrByProps<Type>(
       indices.push(i);
     }
 
-    // 2) add argument 'objProps' values to each item of 'values'
+    // 2) adding each 'objArr[objProps]' to 'values' for each item of 'objProps'
     for (let j=0; j < objArr.length; j++) {
       for (let k=0; k < objProps.length; k++) {
         values[j].push(objArr[j][objProps[k]])

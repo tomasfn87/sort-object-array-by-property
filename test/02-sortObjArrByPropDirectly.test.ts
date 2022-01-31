@@ -92,7 +92,7 @@ describe('2) Sort Object Array by Property Directly, obtaining a list of values 
       { a: 9, b: 2 },    ->      { a: 2, b: 8 },
       { a: 7, b: 5 }     ->      { a: 1, b: 7 }
     ],                   ->    ]
-  "a", "i")`, () => {
+  "a", "r")`, () => {
     let result = sortObjectArrByPropDirectly(objArr, "a", "r");
     expect(result).to.eql([
       { a: 9, b: 2 },
