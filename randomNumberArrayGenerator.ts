@@ -1,5 +1,5 @@
-export const NewLongArray = (arrLen:Number, type:'s'|'n' = 'n'):[] => {
-  let longArray:Number[] | String[] | any= [];
+export const NewLongArray = (arrLen:number, type:'s'|'n' = 'n'):[] => {
+  let longArray:number[] | string[] | any= [];
 
   const randNum = (() => (parseInt((Math.random() * 3 * 10e4).toFixed())))
 
@@ -13,10 +13,10 @@ export const NewLongArray = (arrLen:Number, type:'s'|'n' = 'n'):[] => {
 }
 
 export const NewArrOfArrs = (
-  arrArrLength:Number,
+  arrArrLength:number,
   arrGeneratorFunc:Function,
-  eachArrLength:Number,
-  eachArrOptions?:String
+  eachArrLength:number,
+  eachArrOptions?:string
 ):[][] => {
   let arrArr:[][]  = [];
 
