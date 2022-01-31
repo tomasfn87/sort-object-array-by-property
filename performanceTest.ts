@@ -1,3 +1,4 @@
+import sortObjectArrByProps from "./sortObjArrByProps";
 import sortObjectArrByPropDirectly from "./sortObjArrByPropDirectly";
 import sortObjectArrByPropIndexing from "./sortObjArrByPropIndexing";
 import { NewLongArray, NewArrOfArrs } from "./randomNumberArrayGenerator";
@@ -22,19 +23,19 @@ console.log(` -> { NewLongArray(10e6, 's') }\n    { ${showTime(t4 - t3)} }`);
 // STRING
 console.log()
 const t5 = performance.now();
-const arrArrString = NewArrOfArrs(50000, NewLongArray, 5, 's');
+const arrArrString = NewArrOfArrs(35000, NewLongArray, 10, 's');
 const t6 = performance.now();
 console.log(
-  ` -> { const arrArrString = NewArrOfArrs(50000, NewLongArray, 5, 's') }\n    { ${showTime(t6 - t5)} }`
+  ` -> { const arrArrString = NewArrOfArrs(35000, NewLongArray, 10, 's') }\n    { ${showTime(t6 - t5)} }`
 );
 
 // NUMBER
 console.log()
 const t7 = performance.now();
-const arrArrNumber = NewArrOfArrs(50000, NewLongArray, 5);
+const arrArrNumber = NewArrOfArrs(35000, NewLongArray, 10);
 const t8 = performance.now();
 console.log(
-  ` -> { const arrArrNumber = NewArrOfArrs(50000, NewLongArray, 5) }\n    { ${showTime(t8 - t7)} }`
+  ` -> { const arrArrNumber = NewArrOfArrs(35000, NewLongArray, 10) }\n    { ${showTime(t8 - t7)} }`
 );
 
 // STRING
@@ -71,4 +72,40 @@ sortObjectArrByPropDirectly(arrArrNumber, 3);
 const t16 = performance.now();
 console.log(
   ` -> { sortObjectArrByPropDirectly(arrArrNumber, 3) }\n    { ${showTime(t16 - t15)} }`
+);
+
+// STRING
+console.log()
+const t17 = performance.now();
+sortObjectArrByProps(arrArrString, [0,1,2,3,4,5,6,7,8,9]);
+const t18 = performance.now();
+console.log(
+  ` -> { sortObjectArrByProps(arrArrString, [0,1,2,3,4,5,6,7,8,9]) }\n    { ${showTime(t18 - t17)} }`
+);
+
+// NUMBER
+console.log()
+const t19 = performance.now();
+sortObjectArrByProps(arrArrNumber, [0,1,2,3,4,5,6,7,8,9]);
+const t20 = performance.now();
+console.log(
+  ` -> { sortObjectArrByProps(arrArrNumber, [0,1,2,3,4,5,6,7,8,9]) }\n    { ${showTime(t20 - t19)} }`
+);
+
+// STRING
+console.log()
+const t21 = performance.now();
+sortObjectArrByProps(arrArrString, 3);
+const t22 = performance.now();
+console.log(
+  ` -> { sortObjectArrByProps(arrArrString, 3) }\n    { ${showTime(t22 - t21)} }`
+);
+
+// NUMBER
+console.log()
+const t23 = performance.now();
+sortObjectArrByProps(arrArrNumber, 3);
+const t24 = performance.now();
+console.log(
+  ` -> { sortObjectArrByProps(arrArrNumber, 3) }\n    { ${showTime(t24 - t23)} }`
 );
