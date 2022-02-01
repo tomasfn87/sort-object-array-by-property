@@ -7,6 +7,13 @@ const showTime = (milliseconds:number):string => {
   return `${((milliseconds) / 1000).toFixed(3)} seconds`
 }
 
+let numberOfArrays = parseInt(process.argv[2])*1000;
+let eachArraySize = parseInt(process.argv[3]);
+
+if (eachArraySize < 5) {
+  eachArraySize = 5
+}
+
 // NUMBER
 const t1 = performance.now();
 NewLongArray(10e6, 'n');
@@ -23,19 +30,19 @@ console.log(` -> { NewLongArray(10e6, 's') }\n    { ${showTime(t4 - t3)} }`);
 // STRING
 console.log()
 const t5 = performance.now();
-const arrArrString = NewArrOfArrs(25000, NewLongArray, 30, 's');
+const arrArrString = NewArrOfArrs(numberOfArrays, NewLongArray, eachArraySize, 's');
 const t6 = performance.now();
 console.log(
-  ` -> { const arrArrString = NewArrOfArrs(25000, NewLongArray, 30, 's') }\n    { ${showTime(t6 - t5)} }`
+  ` -> { const arrArrString = NewArrOfArrs(${numberOfArrays}, NewLongArray, ${eachArraySize}, 's') }\n    { ${showTime(t6 - t5)} }`
 );
 
 // NUMBER
 console.log()
 const t7 = performance.now();
-const arrArrNumber = NewArrOfArrs(25000, NewLongArray, 30);
+const arrArrNumber = NewArrOfArrs(numberOfArrays, NewLongArray, eachArraySize);
 const t8 = performance.now();
 console.log(
-  ` -> { const arrArrNumber = NewArrOfArrs(25000, NewLongArray, 30) }\n    { ${showTime(t8 - t7)} }`
+  ` -> { const arrArrNumber = NewArrOfArrs(${numberOfArrays}, NewLongArray, ${eachArraySize}) }\n    { ${showTime(t8 - t7)} }`
 );
 
 // STRING
@@ -74,24 +81,27 @@ console.log(
   ` -> { sortObjectArrByPropDirectly(arrArrNumber, 3) }\n    { ${showTime(t16 - t15)} }`
 );
 
-const from_0_to_29 = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,25,26,27,28,29]
+let sortProps = [];
+for (let i = 1; i <= eachArraySize; i++) {
+  sortProps.push(i)
+}
 
 // STRING
 console.log()
 const t17 = performance.now();
-sortObjectArrByProps(arrArrString, from_0_to_29);
+sortObjectArrByProps(arrArrString, sortProps);
 const t18 = performance.now();
 console.log(
-  ` -> { sortObjectArrByProps(arrArrString, [0,1,2,...,27,28,29]) }\n    { ${showTime(t18 - t17)} }`
+  ` -> { sortObjectArrByProps(arrArrString, [0,1,...,${eachArraySize - 2},${eachArraySize-1}]) }\n    { ${showTime(t18 - t17)} }`
 );
 
 // NUMBER
 console.log()
 const t19 = performance.now();
-sortObjectArrByProps(arrArrNumber, from_0_to_29);
+sortObjectArrByProps(arrArrNumber, sortProps);
 const t20 = performance.now();
 console.log(
-  ` -> { sortObjectArrByProps(arrArrNumber, [0,1,2,...,27,28,29]) }\n    { ${showTime(t20 - t19)} }`
+  ` -> { sortObjectArrByProps(arrArrNumber, [0,1,...,${eachArraySize - 2},${eachArraySize-1}]) }\n    { ${showTime(t20 - t19)} }`
 );
 
 // STRING
