@@ -1,7 +1,7 @@
 export const NewLongArray = (arrLen:number, type:'s'|'n' = 'n'):[] => {
   let longArray:number[] | string[] | any= [];
 
-  const randNum = (() => (parseInt((Math.random() * 3 * 10e4).toFixed())))
+  const randNum = (() => (parseInt((Math.random() * 3 * 100).toFixed())))
 
   for (let i=0; i < arrLen; i++) {
     type !== 's' 
