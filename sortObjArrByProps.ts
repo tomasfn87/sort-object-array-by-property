@@ -94,7 +94,7 @@ export default function sortObjectArrByProps<Type>(                             
             [indices[j], indices[j+1]] = [indices[j+1], indices[j]];              // 2.2.3.1.1.2) swap 'indices'
           }
         } else {                                                                  // 2.2.2.2) if there are missing values, string checking:
-          if (values[j].toString() > values[j+1].toString()) {                    // 2.2.3) Single case: first value is greater than second value; using string comparison to test numbers or strings against ''
+          if (values[j].toString() > values[j+1].toString()) {                    // 2.2.3) Single case: first value is greater than second value; using string comparison to allow numbers to test against '⭢'
             [values[j], values[j+1]] = [values[j+1], values[j]];                  // 2.2.3.1) swap 'values'
             [indices[j], indices[j+1]] = [indices[j+1], indices[j]];              // 2.2.3.2) swap 'indices'
           }
@@ -104,7 +104,7 @@ export default function sortObjectArrByProps<Type>(                             
   }
 
   for (let i of indices) {                                                        // *.1) populate 'sortedObjArr'
-      sortedObjectArray.push(objArr[i]);                                          // *.1.1) add each of the received object array's items following 'indices' values
+    sortedObjectArray.push(objArr[i]);                                            // *.1.1) add each of the received object array's items following 'indices' values
   }
 
   reverse === 'r'.toLowerCase() && sortedObjectArray.reverse();                   // *.2) if 'reverse' receives 'r' or 'R' as argument, 'sortedObjectArray' is reversed
