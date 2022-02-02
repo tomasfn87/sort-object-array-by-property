@@ -7,3 +7,6 @@ package-lock.json
 
 # typescript
 *.js
+
+# misc
+performanceTest-scratch.ts
