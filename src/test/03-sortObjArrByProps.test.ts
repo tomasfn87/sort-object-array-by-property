@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import sortObjectArrByProps from "../sortObjArrByProps";
+import { sortObjectArrByProps } from "../sortObjArrByProps";
 
 const objArr = [
   { a: 7, b: 5 },

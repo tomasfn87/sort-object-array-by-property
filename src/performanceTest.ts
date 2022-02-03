@@ -1,6 +1,6 @@
-import sortObjectArrByProps from "./sortObjArrByProps";
-import sortObjectArrByPropDirectly from "./sortObjArrByPropDirectly";
-import sortObjectArrByPropIndexing from "./sortObjArrByPropIndexing";
+import { sortObjectArrByProps } from "./sortObjArrByProps";
+import { sortObjectArrByPropDirectly } from "./sortObjArrByPropDirectly";
+import { sortObjectArrByPropIndexing } from "./sortObjArrByPropIndexing";
 import { NewLongArray, NewArrOfArrs } from "./randomNumberArrayGenerator";
 
 const showTime = (milliseconds:number):string => {

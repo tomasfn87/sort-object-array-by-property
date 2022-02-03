@@ -6,7 +6,7 @@ type prop = string | index                                                      
 type obj = {} | value[]                                                           // an object or an array
 type objArr = readonly obj[] | any[]                                              // a read only array of objects or arrays
 
-export default function sortObjectArrByProps<Type>(                               // 0) Sort Object Array By Properties takes:
+export function sortObjectArrByProps<Type>(                               // 0) Sort Object Array By Properties takes:
   objArr: objArr,                                                                 // 0.1) an array of objects or an array of arrays, that will be sorted according to:
   objProps:                                                                       // 0.2) 0.2.1) between two and all their properties' values, 0.2.2) a single property's values
     prop[]                                                                        // 0.2.1.1) an array of strings, 0.2.1.2) an array of numbers
