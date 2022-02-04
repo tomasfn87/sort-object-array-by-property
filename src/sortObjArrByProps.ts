@@ -17,7 +17,6 @@ export function sortObjectArrByProps<Type>(                                  // 
   let sortedObjectArray:Type[] = [];                                         // will be used to mount the ordered array after ordering a list of values (2) or a list of lists of values (1)
   let values:values | any = [];                                              // will store the values according to which the list will be sorted; may be all values if all objects' properties are passed to 'objProps'
   let indices:indices = [];                                                  // will store the indices of the objects or arrays to mount 'sortedObjectArray' before the function returns
-  let missingProps:boolean = false;                                          // will store a boolean that tells if one or more properties are missing from one of the objects or arrays in 'objArr'
   let highestValue:{ value:value, type:string }[] = [];                      // will store the highest values of an object array properties
 
   const greaterString = (text:string):string => {                            // 'greaterString' receives a string:
@@ -32,7 +31,7 @@ export function sortObjectArrByProps<Type>(                                  // 
     return item + 1                                                          // Case two: number: adds + 1;
   }
 
-  if (!!Array.isArray(objProps)) {                                           // 1) Sort by two or all properties
+  if (!!Array.isArray(objProps)) {                                           // 1) Sort by two or all properties - obtaining highest values
     for (let i=0; i < objProps.length; i++) {                                // 1.1) for each property in 'objProps'
       highestValue[i] = {                                                    // 1.1.1)
         value: objArr[0][objProps[i]],                                       // 1.1.1.1) set 'highestValue[item].value' to 'objArr' first item's value
@@ -41,7 +40,7 @@ export function sortObjectArrByProps<Type>(                                  // 
       for (let j=1; j < objArr.length; j++) {                                // 1.1.2) for each object in 'objArr'
         if (objArr[j][objProps[i]] !== undefined) {                          // 1.1.2.1) if value is not undefined
           if (highestValue[i].value === undefined                            // 1.1.2.1.1) if 'highestValue[item].value' is undefined
-            || objArr[j][objProps[i]] > highestValue[i].value) {             // 1.1.2.1.1') or value is higher than 'highestValue[item].value'
+          || objArr[j][objProps[i]] > highestValue[i].value) {               // 1.1.2.1.1') or value is higher than 'highestValue[item].value'
             highestValue[i].value = objArr[j][objProps[i]];                  // 1.1.2.1.1.1) set 'highestValue[item].value' to value
             if (highestValue[i].type === 'undefined') {                      // 1.1.2.1.1.2) if 'highestValue[item].type' is 'undefined'
               highestValue[i].type = typeof objArr[i][objProps[i]];          // 1.1.2.1.1.2.1) set 'highestValue[item].type' to value's type
@@ -50,7 +49,7 @@ export function sortObjectArrByProps<Type>(                                  // 
         } 
       }
     }
-  } else {                                                                   // 2) Sort by a single property
+  } else {                                                                   // 2) Sort by a single property - obtaining highest value
     highestValue[0] = {                                                      // 2.1) 
       value: objArr[0][objProps],                                            // 2.1.1) set 'highestValue[0].value' to 'objArr' first item's value
       type: typeof objArr[0][objProps]                                       // 2.1.2) set 'highestValue[0].type' to 'objArr' first item's value's type
@@ -58,7 +57,7 @@ export function sortObjectArrByProps<Type>(                                  // 
     for (let i=1; i < objArr.length; i++) {                                  // 2.2) for each object in 'objArr'
       if (objArr[i][objProps] !== undefined) {                               // 2.2.1) if value is not undefined
         if (highestValue[0].value === undefined                              // 2.2.1.1) if 'highestValue[0].value' is undefined
-          || objArr[i][objProps] > highestValue[0].value) {                  // 2.2.1.1') or value is higher than 'highestValue[item].value'
+        || objArr[i][objProps] > highestValue[0].value) {                    // 2.2.1.1') or value is higher than 'highestValue[item].value'
           highestValue[0].value = objArr[i][objProps];                       // 2.2.1.1.1) set 'highestValue[0].value' to value
           if (highestValue[0].type === 'undefined') {                        // 2.2.1.1.2) if 'highestValue[0].type' is 'undefined'
             highestValue[0].type = typeof objArr[i][objProps];               // 2.2.1.1.2.1) set 'highestValue[0].type' to value's type
@@ -79,7 +78,7 @@ export function sortObjectArrByProps<Type>(                                  // 
         if (objArr[j].hasOwnProperty(objProps[k])) {                         // 1.3.1.1) if the current item (j) has property (k)
           values[j].push(objArr[j][objProps[k]])                             // 1.3.1.1.1) add the current item (j) and property (k) data to 'values'
         } else {                                                             // 1.3.1.2) else, if the current item (j) doesn't have property (k)
-          values[j].push(increment(highestValue[k].value))                   // 1.3.1.2.1.1) add '⭢' to values
+          values[j].push(increment(highestValue[k].value))                   // 1.3.1.2.1.1) add a 'heavier' value to make empty values go down
         }                      
       }
     }
@@ -101,34 +100,27 @@ export function sortObjectArrByProps<Type>(                                  // 
     let k = 0;                                                               // 1.4.1) starting 'objProps' index
     for (let i=1; i < values.length; i++) {                                  // 1.4.2) sort optimization: at each iteration, the last value will be skipped (i)
       for (let j=0; j < values.length - i;) {                                // 1.4.2.1) 'values' index
-        if (values[j][k] === values[j+1][k]) {                               // 1.4.2.1.1.1) Case one: values are equal
-          if (k === objProps.length - 1) {                                   // 1.4.2.1.1.1.1) all values are equal, can't sort
-            k = 0; j++;                                                      // 1.4.2.1.1.1.1.1) restart properties; check next value
-          } else {                                                           // 1.4.2.1.1.1.2) there are still properties to be checked
-            k++;                                                             // 1.4.2.1.1.1.2.1) check next property
+        if (values[j][k] === values[j+1][k]) {                               // 1.4.2.1.1) Case one: values are equal
+          if (k === objProps.length - 1) {                                   // 1.4.2.1.1.1) all values are equal, can't sort
+            k = 0; j++;                                                      // 1.4.2.1.1.1.1) restart properties; check next value
+          } else {                                                           // 1.4.2.1.1.2) there are still properties to be checked
+            k++;                                                             // 1.4.2.1.1.2.1) check next property
           }
-        } else if (values[j][k] > values[j+1][k]) {                          // 1.4.2.1.1.1) Case two: first value > second value: swap the two values
-          [values[j], values[j+1]] = [values[j+1], values[j]];               // 1.4.2.1.1.2.1) swap 'values'
-          [indices[j], indices[j+1]] = [indices[j+1], indices[j]];           // 1.4.2.1.1.2.2) swap 'indices'
-          k = 0; j++;                                                        // 1.4.2.1.1.2.3) restart properties; check next value
-        } else {                                                             // 1.4.2.1.1.3) Case three: first value < second value: already sorted, nothing to do
-          k = 0; j++;                                                        // 1.4.2.1.1.3.1) restart properties; check next value
+        } else if (values[j][k] > values[j+1][k]) {                          // 1.4.2.1.1) Case two: first value > second value: swap the two values
+          [values[j], values[j+1]] = [values[j+1], values[j]];               // 1.4.2.1.2.1) swap 'values'
+          [indices[j], indices[j+1]] = [indices[j+1], indices[j]];           // 1.4.2.1.2.2) swap 'indices'
+          k = 0; j++;                                                        // 1.4.2.1.2.3) restart properties; check next value
+        } else {                                                             // 1.4.2.1.3) Case three: first value < second value: already sorted, nothing to do
+          k = 0; j++;                                                        // 1.4.2.1.3.1) restart properties; check next value
         }
       }
     }
   } else {                                                                   // 2.3) Sorting by a single property - swap logic
     for (let i=1; i < values.length; i++) {                                  // 2.3.1) sort optimization: at each iteration, the last value will be skipped (i++): the algorithm pushes the heaviest value to the bottom
       for (let j=0; j < values.length - i; j++) {                            // 2.3.2) 'values' index
-        if (!missingProps) {                                                 // 2.3.2.1) every object in 'objArr' have all properties in 'objProps'
-          if (values[j] > values[j+1]) {                                     // 2.3.2.1.1) Single case: first value is greater than second value
-            [values[j], values[j+1]] = [values[j+1], values[j]];             // 2.3.3.1.1.1) swap 'values'
-            [indices[j], indices[j+1]] = [indices[j+1], indices[j]];         // 2.3.3.1.1.2) swap 'indices'
-          }
-        } else {                                                             // 2.3.2.2) if there are missing values, string checking:
-          if (values[j] > values[j+1]) {                                     // 2.3.3) Single case: first value is greater than second value; using string comparison to allow numbers to test against '⭢'
-            [values[j], values[j+1]] = [values[j+1], values[j]];             // 2.3.3.1) swap 'values'
-            [indices[j], indices[j+1]] = [indices[j+1], indices[j]];         // 2.3.3.2) swap 'indices'
-          }
+        if (values[j] > values[j+1]) {                                       // 2.3.2.1.1) Single case: first value is greater than second value
+          [values[j], values[j+1]] = [values[j+1], values[j]];               // 2.3.3.1.1.1) swap 'values'
+          [indices[j], indices[j+1]] = [indices[j+1], indices[j]];           // 2.3.3.1.1.2) swap 'indices'
         }
       }
     }
