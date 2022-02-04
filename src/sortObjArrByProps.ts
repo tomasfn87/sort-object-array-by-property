@@ -20,15 +20,20 @@ export function sortObjectArrByProps<Type>(                                  // 
   let highestValue:{ value:value, type:string }[] = [];                      // will store the highest values of an object array properties
 
   const greaterString = (text:string):string => {                            // 'greaterString' receives a string:
-    const greaterFirstCharCode:number = text.charCodeAt(0) + 1               // reads the string's first character's char code and adds + 1    
-    return `${String.fromCharCode(greaterFirstCharCode)}${text.slice(1)}`    // return the received string with first character swapped by a one char code higher character
+    if (text.length === 0) {                                                 // if the string is empty
+      return "0"                                                             // return "0"
+    } else {                                                                 //  otherwise 
+      const greaterFirstCharCode:number = text.charCodeAt(0) + 1             // read the string's first character's char code and add + 1     
+      return `${String.fromCharCode(greaterFirstCharCode)}`                  // return a one character one-char-code-higher string
+    } 
   }
 
   const increment = (item:value):value => {                                  // 'increment' receives either a string or a number
-    if (typeof item === 'number') {                                               
-      return item + 1                                                          // Case two: number: adds + 1;
+    if (typeof item === 'number') {
+      return item + 1                                                        // Case two: number: adds + 1;
+    } else if (typeof item === 'string') {
+      return greaterString(item);                                            // Case one: string: changes the first character to a one char code higher character
     }
-    return greaterString(item);                                            // Case one: string: changes the first character to a one char code higher character
   }
 
   if (!!Array.isArray(objProps)) {                                           // 1) Sort by two or all properties - obtaining highest values
