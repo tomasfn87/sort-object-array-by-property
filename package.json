@@ -1,6 +1,6 @@
 {
   "name": "@nighly/sort-object-array-by-property",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "'sort-object-array-by-property' sorts an array of objects or arrays by one or all their properties. It can also sort objects that have different properties following a list of properties whose first element is the highest in priority and whose last element is the lowest in priority. It takes two or three parameters: 1) 'objArr': the object array to be sorted; 2) 'objProps': the property or array of properties that will be used to sort 1); 3) 'reverse': this optional parameter has as default value 's', for standard, ascending order output, and can take 'r' to produce a reversed, descending order output.",
   "main": "sortObjArrByProps.ts",
   "directories": {
