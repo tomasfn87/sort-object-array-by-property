@@ -15,22 +15,22 @@ export function sortObjectArrByProps<Type>(                                  // 
   ):Type[] {                                                                 // 0.4) will return the items of 'objArr' ordered using 'objProps', leaving the original array untouched
 
   let sortedObjectArray:Type[] = [];                                         // will be used to mount the ordered array after ordering a list of values (2) or a list of lists of values (1)
-  let values:values | any = [];                                              // will store the values according to which the list will be sorted; may be all values if all objects' properties are passed to 'objProps'
+  let values:values = [];                                                    // will store the values according to which the list will be sorted; may be all values if all objects' properties are passed to 'objProps'
   let indices:indices = [];                                                  // will store the indices of the objects or arrays to mount 'sortedObjectArray' before the function returns
   let highestValue:{ value:value, type:string }[] = [];                      // will store the highest values of an object array properties
 
   const greaterString = (text:string):string => {                            // 'greaterString' receives a string:
     if (text.length === 0) {                                                 // if the string is empty
       return "0"                                                             // return "0"
-    } else {                                                                 //  otherwise 
-      const greaterFirstCharCode:number = text.charCodeAt(0) + 1             // read the string's first character's char code and add + 1     
+    } else {                                                                 // otherwise
+      const greaterFirstCharCode:number = text.charCodeAt(0) + 1             // read the string's first character's char code and add + 1
       return `${String.fromCharCode(greaterFirstCharCode)}`                  // return a one character one-char-code-higher string
-    } 
+    }
   }
 
   const increment = (item:value):value => {                                  // 'increment' receives either a string or a number
     if (typeof item === 'number') {
-      return item + 1                                                        // Case two: number: adds + 1;
+      return item + 1                                                        // Case two: number: adds + 1
     } else if (typeof item === 'string') {
       return greaterString(item);                                            // Case one: string: changes the first character to a one char code higher character
     }
@@ -51,11 +51,11 @@ export function sortObjectArrByProps<Type>(                                  // 
               highestValue[i].type = typeof objArr[i][objProps[i]];          // 1.1.2.1.1.2.1) set 'highestValue[item].type' to value's type
             }
           }
-        } 
+        }
       }
     }
   } else {                                                                   // 2) Sort by a single property - obtaining highest value
-    highestValue[0] = {                                                      // 2.1) 
+    highestValue[0] = {                                                      // 2.1)
       value: objArr[0][objProps],                                            // 2.1.1) set 'highestValue[0].value' to 'objArr' first item's value
       type: typeof objArr[0][objProps]                                       // 2.1.2) set 'highestValue[0].type' to 'objArr' first item's value's type
     };
@@ -67,12 +67,11 @@ export function sortObjectArrByProps<Type>(                                  // 
           if (highestValue[0].type === 'undefined') {                        // 2.2.1.1.2) if 'highestValue[0].type' is 'undefined'
             highestValue[0].type = typeof objArr[i][objProps];               // 2.2.1.1.2.1) set 'highestValue[0].type' to value's type
           }
-        } 
+        }
       }
     }
   }
 
-  
   if (!!Array.isArray(objProps)) {                                           // 1) Sort by two or all properties - collecting values
     for (let i=0; i < objArr.length; i++) {                                  // 1.2) for each item of argument 'objArr'
       values.push([]);                                                       // 1.2.1) add an empty array to 'values'
@@ -84,7 +83,7 @@ export function sortObjectArrByProps<Type>(                                  // 
           values[j].push(objArr[j][objProps[k]])                             // 1.3.1.1.1) add the current item (j) and property (k) data to 'values'
         } else {                                                             // 1.3.1.2) else, if the current item (j) doesn't have property (k)
           values[j].push(increment(highestValue[k].value))                   // 1.3.1.2.1.1) add a 'heavier' value to make empty values go down
-        }                      
+        }
       }
     }
   } else {                                                                   // 2) Sort by a single property - collecting values
