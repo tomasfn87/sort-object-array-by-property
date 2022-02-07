@@ -1,6 +1,6 @@
 {
   "name": "@nighly/sort-object-array-by-property",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "'sort-object-array-by-property' sorts an array of objects or arrays by one or all their properties, even if some objects don't have all the specified properties.",
   "main": "dist/sortObjArrByProps.js",
   "directories": {
