@@ -30,9 +30,9 @@ export function sortObjectArrByProps<Type>(                                  // 
 
   const increment = (item:value):value => {                                  // 'increment' receives either a string or a number
     if (typeof item === 'number') {
-      return item + 1                                                        // Case two: number: adds + 1
+      return item + 1                                                        // Case one: number: adds + 1
     } else if (typeof item === 'string') {
-      return greaterString(item);                                            // Case one: string: changes the first character to a one char code higher character
+      return greaterString(item);                                            // Case two: string: changes the first character to a one char code higher character
     }
   }
 
