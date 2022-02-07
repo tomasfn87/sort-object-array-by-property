@@ -62,18 +62,78 @@ Test it online:
   * the original array remains untouched.
 # 4. Examples:
 ---
-  * <strong>sortObjectArrByProps( </strong><i>[ { a: 4, b: 2 }, { a: 3, b: 5 }, { a: 1, b: 4 }, { a: 5, b: 1 }, { a: 2, b: 3 } ]</i>, <i>'a'</i><strong> )</strong>
 
-  * <strong>sortObjectArrByProps( </strong><i>[ { a: 4, b: 2 }, { a: 3, b: 5 }, { a: 1, b: 4 }, { a: 5, b: 1 }, { a: 2, b: 3 } ]</i>, <i>'a'</i>, <i>'r'</i><strong> )</strong>
-
-  * <strong>sortObjectArrByProps( </strong><i>[ { a: 4, b: 2 }, { a: 3, b: 5 }, { a: 1, b: 4 }, { a: 5, b: 1 }, { a: 2, b: 3 } ]</i>, <i>'b'</i><strong> )</strong>
-
-  * <strong>sortObjectArrByProps( </strong><i>[ { a: 4, b: 2 }, { a: 3, b: 5 }, { a: 1, b: 4 }, { a: 5, b: 1 }, { a: 2, b: 3 } ]</i>, <i>'b'</i>, <i>'r'</i><strong> )</strong>
-
-  * <strong>sortObjectArrByProps( </strong><i>[ { a: 1, b: 2 }, { a: 2, b: 2 }, { a: 2, b: 1 }, { a: 1, b: 1 }, { a: 3, b: 3 } ]</i>, <i>[ 'a', 'b' ]</i><strong> )</strong>
-
-  * <strong>sortObjectArrByProps( </strong><i>[ { a: 1, b: 2 }, { a: 2, b: 2 }, { a: 2, b: 1 }, { a: 1, b: 1 }, { a: 3, b: 3 } ]</i>, <i>[ 'a', 'b' ]</i>, 'r'<strong> )</strong>
-
-  * <strong>sortObjectArrByProps( </strong><i>[ { a: 1, b: 2 }, { a: 2, b: 2 }, { a: 2, b: 1 }, { a: 1, b: 1 }, { a: 3, b: 3 } ]</i>, <i>[ 'b', 'a' ]</i><strong> )</strong>
-
-  * <strong>sortObjectArrByProps( </strong><i>[ { a: 1, b: 2 }, { a: 2, b: 2 }, { a: 2, b: 1 }, { a: 1, b: 1 }, { a: 3, b: 3 } ]</i>, <i>[ 'b', 'a' ]</i>, 'r'<strong> )</strong>
+<ul style="font-family: Cascadia Code, Consolas, monospace;">
+  <li>
+    <strong>sortObjectArrByProps(</strong><i>[<br>
+    &nbsp;&nbsp;{ a: 4, b: 2 },&nbsp; ->&nbsp; { a: 1, b: 4 },<br>
+    &nbsp;&nbsp;{ a: 3, b: 5 },&nbsp; ->&nbsp; { a: 2, b: 3 },<br>
+    &nbsp;&nbsp;{ a: 1, b: 4 },&nbsp; ->&nbsp; { a: 3, b: 5 },<br>
+    &nbsp;&nbsp;{ a: 5, b: 1 },&nbsp; ->&nbsp; { a: 4, b: 2 },<br>
+    &nbsp;&nbsp;{ a: 2, b: 3 }&nbsp;&nbsp; ->&nbsp; { a: 5, b: 1 }<br>
+    ]</i>, <i>'a'</i><strong>)</strong>
+  </li><br>
+  <li>
+    <strong>sortObjectArrByProps(</strong><i>[<br>
+    &nbsp;&nbsp;{ a: 4, b: 2 },&nbsp; ->&nbsp; { a: 5, b: 1 },<br>
+    &nbsp;&nbsp;{ a: 3, b: 5 },&nbsp; ->&nbsp; { a: 4, b: 2 },<br>
+    &nbsp;&nbsp;{ a: 1, b: 4 },&nbsp; ->&nbsp; { a: 3, b: 5 },<br>
+    &nbsp;&nbsp;{ a: 5, b: 1 },&nbsp; ->&nbsp; { a: 2, b: 3 },<br>
+    &nbsp;&nbsp;{ a: 2, b: 3 }&nbsp;&nbsp; ->&nbsp; { a: 1, b: 4 }<br>
+    ]</i>, <i>'a'</i>, <i>'r'</i><strong> )</strong>
+  </li><br>
+  <li>
+    <strong>sortObjectArrByProps(</strong><i>[<br>
+      &nbsp;&nbsp;{ a: 4, b: 2 },&nbsp; ->&nbsp; { a: 5, b: 1 },<br>
+      &nbsp;&nbsp;{ a: 3, b: 5 },&nbsp; ->&nbsp; { a: 4, b: 2 },<br>
+      &nbsp;&nbsp;{ a: 1, b: 4 },&nbsp; ->&nbsp; { a: 2, b: 3 },<br>
+      &nbsp;&nbsp;{ a: 5, b: 1 },&nbsp; ->&nbsp; { a: 1, b: 4 },<br>
+      &nbsp;&nbsp;{ a: 2, b: 3 }&nbsp;&nbsp; ->&nbsp; { a: 3, b: 5 }<br>
+    ]</i>, <i>'b'</i><strong>)</strong>
+  </li><br>
+  <li>
+    <strong>sortObjectArrByProps(</strong><i>[<br>
+      &nbsp;&nbsp;{ a: 4, b: 2 },&nbsp; ->&nbsp; { a: 3, b: 5 },<br>
+      &nbsp;&nbsp;{ a: 3, b: 5 },&nbsp; ->&nbsp; { a: 1, b: 4 },<br>
+      &nbsp;&nbsp;{ a: 1, b: 4 },&nbsp; ->&nbsp; { a: 2, b: 3 },<br>
+      &nbsp;&nbsp;{ a: 5, b: 1 },&nbsp; ->&nbsp; { a: 4, b: 2 },<br>
+      &nbsp;&nbsp;{ a: 2, b: 3 }&nbsp;&nbsp; ->&nbsp; { a: 5, b: 1 }<br>
+    ]</i>, <i>'b'</i>, <i>'r'</i><strong>)</strong>
+  </li><br>
+  <li>
+    <strong>sortObjectArrByProps(</strong><i>[<br>
+      &nbsp;&nbsp;{ a: 1, b: 2 },&nbsp; ->&nbsp; { a: 1, b: 1 },<br>
+      &nbsp;&nbsp;{ a: 2, b: 2 },&nbsp; ->&nbsp; { a: 1, b: 2 },<br>
+      &nbsp;&nbsp;{ a: 2, b: 1 },&nbsp; ->&nbsp; { a: 2, b: 1 },<br>
+      &nbsp;&nbsp;{ a: 1, b: 1 },&nbsp; ->&nbsp; { a: 2, b: 2 },<br>
+      &nbsp;&nbsp;{ a: 3, b: 3 }&nbsp;&nbsp; ->&nbsp; { a: 3, b: 3 }<br>
+    ]</i>, <i>[ 'a', 'b' ]</i><strong>)</strong>
+  </li><br>
+  <li>
+    <strong>sortObjectArrByProps(</strong><i>[<br>
+      &nbsp;&nbsp;{ a: 1, b: 2 },&nbsp; ->&nbsp; { a: 3, b: 3 },<br>
+      &nbsp;&nbsp;{ a: 2, b: 2 },&nbsp; ->&nbsp; { a: 2, b: 2 },<br>
+      &nbsp;&nbsp;{ a: 2, b: 1 },&nbsp; ->&nbsp; { a: 2, b: 1 },<br>
+      &nbsp;&nbsp;{ a: 1, b: 1 },&nbsp; ->&nbsp; { a: 1, b: 2 },<br>
+      &nbsp;&nbsp;{ a: 3, b: 3 }&nbsp;&nbsp; ->&nbsp; { a: 1, b: 1 }<br>
+    ]</i>, <i>[ 'a', 'b' ]</i>, 'r'<strong>)</strong>
+  </li><br>
+  <li>
+    <strong>sortObjectArrByProps(</strong><i>[<br>
+      &nbsp;&nbsp;{ a: 1, b: 2 },&nbsp; ->&nbsp; { a: 1, b: 1 },<br>
+      &nbsp;&nbsp;{ a: 2, b: 2 },&nbsp; ->&nbsp; { a: 2, b: 1 },<br>
+      &nbsp;&nbsp;{ a: 2, b: 1 },&nbsp; ->&nbsp; { a: 1, b: 2 },<br>
+      &nbsp;&nbsp;{ a: 1, b: 1 },&nbsp; ->&nbsp; { a: 2, b: 2 },<br>
+      &nbsp;&nbsp;{ a: 3, b: 3 }&nbsp;&nbsp; ->&nbsp; { a: 3, b: 3 }<br>
+    ]</i>, <i>[ 'b', 'a' ]</i><strong>)</strong>
+  </li><br>
+  <li>
+    <strong>sortObjectArrByProps(</strong><i>[<br>
+      &nbsp;&nbsp;{ a: 1, b: 2 },&nbsp; ->&nbsp; { a: 3, b: 3 },<br>
+      &nbsp;&nbsp;{ a: 2, b: 2 },&nbsp; ->&nbsp; { a: 2, b: 2 },<br>
+      &nbsp;&nbsp;{ a: 2, b: 1 },&nbsp; ->&nbsp; { a: 1, b: 2 },<br>
+      &nbsp;&nbsp;{ a: 1, b: 1 },&nbsp; ->&nbsp; { a: 2, b: 1 },<br>
+      &nbsp;&nbsp;{ a: 3, b: 3 }&nbsp;&nbsp; ->&nbsp; { a: 1, b: 1 }<br>
+    ]</i>, <i>[ 'b', 'a' ]</i>, 'r'<strong>)</strong>
+  </li>
+</ul>
