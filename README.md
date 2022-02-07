@@ -8,7 +8,7 @@ written in:
 1) Install via CLI with: 
   * <a href="http://www.npmjs.com/package/@nighly/sort-object-array-by-property">npm i @nighly/sort-object-array-by-property</a>
 ---
-2) Import function 'sortObjArrByProps' by adding the line above to a Javascript or Typescript file: 
+2) Import function 'sortObjectArrByProps' by adding the line above to a Javascript or Typescript file: 
   * import { sortObjectArrByProps } from "@nighly/sort-object-array-by-property/dist/sortObjArrByProps.js";
 ---
 3) Usage:
