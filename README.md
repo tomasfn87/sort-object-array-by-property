@@ -2,32 +2,78 @@
 Sorts an array of objects or an array of arrays according to a single property or index or an array of properties or indices.
 
 ---
-written in:
+Written in:
 * Typescript
----
-1) Install via CLI with: 
-  * <a href="http://www.npmjs.com/package/@nighly/sort-object-array-by-property">npm i @nighly/sort-object-array-by-property</a>
----
-2) Import function 'sortObjectArrByProps' by adding the line above to a Javascript or Typescript file: 
-  * import { sortObjectArrByProps } from "@nighly/sort-object-array-by-property/dist/sortObjArrByProps.js";
----
-3) Usage:
-  - sortObjectArrByProps(objArr, objProps)
-  - sortObjectArrByProps(objArr, objProps, reverse)
----
-  * 'sortObjectArrByProps' sorts 'objArr', an array containing objects or other arrays according to 'objProps' value(s), that can be either:
-      1) a single property - "name" or "_id" (an object's property); 0 or 2 (an array's index);
-      2) two, more or all properties - ["name", "age"] or ["type", "price"]; [0, 1] or [2, 5], the former for a list of objects and the latter for a list of arrays.
 
-  * the third and optional parameter, 'reverse', can receive as argument 'r' or 'R' to produce a reversed output;
-  * the original array remains untouched.
 ---
-4) examples:
-  * sortObjectArrByProps([ { a: 4, b: 2 }, { a: 3, b: 5 }, { a: 1, b: 4 }, { a: 5, b: 1 }, { a: 2, b: 3 } ], 'a')
-  * sortObjectArrByProps([ { a: 4, b: 2 }, { a: 3, b: 5 }, { a: 1, b: 4 }, { a: 5, b: 1 }, { a: 2, b: 3 } ], 'a', 'r')
-  * sortObjectArrByProps([ { a: 4, b: 2 }, { a: 3, b: 5 }, { a: 1, b: 4 }, { a: 5, b: 1 }, { a: 2, b: 3 } ], 'b')
-  * sortObjectArrByProps([ { a: 4, b: 2 }, { a: 3, b: 5 }, { a: 1, b: 4 }, { a: 5, b: 1 }, { a: 2, b: 3 } ], 'b', 'r')
-  * sortObjectArrByProps([ { a: 1, b: 2 }, { a: 2, b: 2 }, { a: 2, b: 1 }, { a: 1, b: 1 }, { a: 3, b: 3 } ], ['a', 'b'])
-  * sortObjectArrByProps([ { a: 1, b: 2 }, { a: 2, b: 2 }, { a: 2, b: 1 }, { a: 1, b: 1 }, { a: 3, b: 3 } ], ['a', 'b'], 'r')
-  * sortObjectArrByProps([ { a: 1, b: 2 }, { a: 2, b: 2 }, { a: 2, b: 1 }, { a: 1, b: 1 }, { a: 3, b: 3 } ], ['b', 'a'])
-  * sortObjectArrByProps([ { a: 1, b: 2 }, { a: 2, b: 2 }, { a: 2, b: 1 }, { a: 1, b: 1 }, { a: 3, b: 3 } ], ['b', 'a'], 'r')
+Test it online:
+* <a href="https://runkit.com/tomasfn87/62009884fc3f9f000804f0ba" target="_blank">sort-object-array-by-property - runkit.com</a>
+---
+# 1. Install via CLI with:
+  * <a href="http://www.npmjs.com/package/@nighly/sort-object-array-by-property" target="_blank">npm i @nighly/sort-object-array-by-property</a>
+# 2. Importing: 
+  * import function 'sortObjectArrByProps' by adding one of the lines above to a Javascript or Typescript file:
+---
+  <strong>2.1. CommonJs:</strong>
+  * <i>importing:</i>
+    * var sortObjs = require("@nighly/sort-object-array-by-property");
+  * <i>calling:</i>
+    * single property: <strong><i>sortObjs</i>.sortObjectArrByProps( </strong><i>object_array</i>, <i>prop_1</i><strong> )</strong>
+    * three properties: <strong><i>sortObjs</i>.sortObjectArrByProps( </strong><i>object_array</i>, <i>[prop_1, prop_2, prop_3]</i><strong> )</strong>
+
+  <strong>2.1.1. CommonJs with destructuring</strong> (shorter call):
+  * <i>importing:</i>
+    * const { sortObjectArrByProps } = require("@nighly/sort-object-array-by-property");
+  * <i>calling:</i>
+    * single property: <strong>sortObjectArrByProps( </strong><i>object_array</i>, <i>prop_1</i><strong> )</strong>
+    * three properties: <strong>sortObjectArrByProps( </strong><i>object_array</i>, <i>[prop_1, prop_2, prop_3]</i><strong> )</strong>
+---  
+  <strong>2.2. ES:</strong>
+  * <i>importing:</i>
+    * import { sortObjectArrByProps } from "@nighly/sort-object-array-by-property/dist/sortObjArrByProps.js";
+  * <i>calling:</i>
+    * add <strong>"type": "module"</strong> to 'package.json' or change file extension from <strong>'.js'</strong> to <strong>'.mjs'</strong>
+    * single property: <strong>sortObjectArrByProps( </strong><i>object_array</i>, <i>prop_1</i><strong> )</strong>
+    * three properties: <strong>sortObjectArrByProps( </strong><i>object_array</i>, <i>[ prop_1, prop_2, prop_3 ]</i><strong> )</strong>
+---
+  <strong>2.3. Typescript:</strong>
+  * <i>importing:</i>
+    * import { sortObjectArrByProps } from "@nighly/sort-object-array-by-property";
+  * <i>calling:</i>
+    * single property: <strong>sortObjectArrByProps( </strong><i>object_array</i>, <i>prop_1</i><strong> )</strong>
+    * three properties: <strong>sortObjectArrByProps( </strong><i>object_array</i>, <i>[ prop_1, prop_2, prop_3 ]</i><strong> )</strong>
+# 3. Usage:
+  - <strong>sortObjectArrByProps( </strong><i>objArr</i>, <i>objProps</i><strong> )</strong>
+  - <strong>sortObjectArrByProps( </strong><i>objArr</i>, <i>objProps</i>, <i>reverse</i><strong> )</strong>
+  - <strong>sortObjectArrByProps( </strong><i>objArr</i>, <i>[ ...objProps ]</i><strong> )</strong>
+  - <strong>sortObjectArrByProps( </strong><i>objArr</i>, <i>[ ...objProps ]</i>, reverse<strong> )</strong>
+---
+  '<strong>sortObjectArrByProps</strong>' sorts '<strong>objArr</strong>', an array containing objects or other arrays according to '<strong>objProps</strong>' value(s), that can be either:
+
+---
+  <strong>3.1. a single property:</strong>
+  * <i>"name"</i> or <i>"_id"</i> (an object's property); <i>0</i> or <i>2</i> (an array's index)
+---
+  <strong>3.2. two, more or all properties:</strong>
+  * <i>["name", "age"]</i> or <i>["type", "price"]</i>; <i>[0, 1]</i> or <i>[2, 5]</i> (an array of objects' properties; an array of arrays' indices)
+---
+  * the third and optional parameter, '<strong>reverse</strong>', can receive as argument <strong>'r'</strong> or <strong>'R'</strong> to produce a reversed output
+---
+  * the original array remains untouched.
+# 4. Examples:
+---
+  * <strong>sortObjectArrByProps( </strong><i>[ { a: 4, b: 2 }, { a: 3, b: 5 }, { a: 1, b: 4 }, { a: 5, b: 1 }, { a: 2, b: 3 } ]</i>, <i>'a'</i><strong> )</strong>
+
+  * <strong>sortObjectArrByProps( </strong><i>[ { a: 4, b: 2 }, { a: 3, b: 5 }, { a: 1, b: 4 }, { a: 5, b: 1 }, { a: 2, b: 3 } ]</i>, <i>'a'</i>, <i>'r'</i><strong> )</strong>
+
+  * <strong>sortObjectArrByProps( </strong><i>[ { a: 4, b: 2 }, { a: 3, b: 5 }, { a: 1, b: 4 }, { a: 5, b: 1 }, { a: 2, b: 3 } ]</i>, <i>'b'</i><strong> )</strong>
+
+  * <strong>sortObjectArrByProps( </strong><i>[ { a: 4, b: 2 }, { a: 3, b: 5 }, { a: 1, b: 4 }, { a: 5, b: 1 }, { a: 2, b: 3 } ]</i>, <i>'b'</i>, <i>'r'</i><strong> )</strong>
+
+  * <strong>sortObjectArrByProps( </strong><i>[ { a: 1, b: 2 }, { a: 2, b: 2 }, { a: 2, b: 1 }, { a: 1, b: 1 }, { a: 3, b: 3 } ]</i>, <i>[ 'a', 'b' ]</i><strong> )</strong>
+
+  * <strong>sortObjectArrByProps( </strong><i>[ { a: 1, b: 2 }, { a: 2, b: 2 }, { a: 2, b: 1 }, { a: 1, b: 1 }, { a: 3, b: 3 } ]</i>, <i>[ 'a', 'b' ]</i>, 'r'<strong> )</strong>
+
+  * <strong>sortObjectArrByProps( </strong><i>[ { a: 1, b: 2 }, { a: 2, b: 2 }, { a: 2, b: 1 }, { a: 1, b: 1 }, { a: 3, b: 3 } ]</i>, <i>[ 'b', 'a' ]</i><strong> )</strong>
+
+  * <strong>sortObjectArrByProps( </strong><i>[ { a: 1, b: 2 }, { a: 2, b: 2 }, { a: 2, b: 1 }, { a: 1, b: 1 }, { a: 3, b: 3 } ]</i>, <i>[ 'b', 'a' ]</i>, 'r'<strong> )</strong>
