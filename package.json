@@ -1,20 +1,21 @@
 {
   "name": "@nighly/sort-object-array-by-property",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "'sort-object-array-by-property' sorts an array of objects or arrays by one or all their properties, even if some objects don't have all the specified properties.",
   "main": "sortObjArrByProps.ts",
   "directories": {
     "test": "src/test"
   },
   "scripts": {
-    "build": "mkdir dist &&  tsc",
+    "build": "mkdir dist && tsc",
     "test": "mocha -r ts-node/register ./src/test/*.test.ts",
     "test1": "mocha -r ts-node/register ./src/test/01-sortObjArrByPropIndexing.test.ts",
     "test2": "mocha -r ts-node/register ./src/test/02-sortObjArrByPropDirectly.test.ts",
     "test3": "mocha -r ts-node/register ./src/test/03-sortObjArrByProps.test.ts"
   },
   "files": [
-    "dist/sortObjArrByProps.js"
+    "dist/sortObjArrByProps.js",
+    "dist/sortObjArrByProps.d.ts"
   ],
   "author": "nighly",
   "license": "ISC",
