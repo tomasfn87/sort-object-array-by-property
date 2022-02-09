@@ -1,10 +1,10 @@
-type value = string | number | boolean | any                                 // ideally a string or a number through which the list will be sorted, or some kind of data that can be turned into a string
-type values = value[] | value[][]                                            // an array of 'value' or an array of arrays of 'value', used to sort a 'indices', using only one or all properties of the objects in 'objArr'
-type index = number                                                          // a number used to index a position in an array
-type indices = index[]                                                       // an array of 'index'
-type prop = string | index                                                   // a string for objects; an 'index' for arrays
-type obj = {} | value[]                                                      // an object or an array
-type objArr = readonly obj[] | any[]                                         // a read only array of objects or arrays
+export type value = string | number | boolean | any                                 // ideally a string or a number through which the list will be sorted, or some kind of data that can be turned into a string
+export type values = value[] | value[][]                                            // an array of 'value' or an array of arrays of 'value', used to sort a 'indices', using only one or all properties of the objects in 'objArr'
+export type index = number                                                          // a number used to index a position in an array
+export type indices = index[]                                                       // an array of 'index'
+export type prop = string | index                                                   // a string for objects; an 'index' for arrays
+export type obj = {} | value[]                                                      // an object or an array
+export type objArr = readonly obj[] | any[]                                         // a read only array of objects or arrays
 
 export function sortObjectArrByProps<Type>(                                  // 0) Sort Object Array By Properties takes:
   objArr: objArr,                                                            // 0.1) an array of objects or an array of arrays, that will be sorted according to:
