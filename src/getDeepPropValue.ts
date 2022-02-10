@@ -29,3 +29,22 @@ export const getDeepPropValue = (
   }
   return obj[prop];
 };
+
+export const hasOwnDeepProperty = (
+  obj:obj | any,
+  propStr:prop
+):boolean => {
+  let prop = getDeepProp(propStr);
+  if (!!Array.isArray(prop)) {
+    for (let i=0; i < prop.length; i++) {
+      if (obj.hasOwnProperty(prop[i])) {
+        obj = obj[prop[i]];
+      } else return false;
+    }
+    return true;
+  }
+  else {
+    if (obj.hasOwnProperty(prop)) return true;
+  return false;
+  }
+}
