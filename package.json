@@ -1,7 +1,7 @@
 {
   "name": "@nighly/sort-object-array-by-property",
-  "version": "1.0.15",
-  "description": "'sort-object-array-by-property' sorts an array of objects or arrays by one or all their properties, even if some objects don't have all the specified properties.",
+  "version": "1.1.0",
+  "description": "'sort-object-array-by-property' sorts an array of objects or arrays by one or all their properties, even if some objects don't have all the specified properties. Also works with deep objects and properties, using the syntax 'a.b.c' to access 'a', then 'b' and eventually 'c' from '{ a: { b: { c: 1 } } }'.",
   "main": "dist/sortObjArrByProps.js",
   "directories": {
     "test": "src/test"
@@ -15,7 +15,9 @@
   },
   "files": [
     "dist/sortObjArrByProps.js",
-    "dist/sortObjArrByProps.d.ts"
+    "dist/getDeepPropValue.js",
+    "dist/sortObjArrByProps.d.ts",
+    "dist/getDeepPropValue.d.ts"
   ],
   "author": "nighly",
   "license": "ISC",
