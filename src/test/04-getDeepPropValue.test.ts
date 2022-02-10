@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { getDeepProp, getDeepPropValue } from "../getDeepPropValue";
+import { getDeepProp, getDeepPropValue, hasOwnDeepProperty } from "../getDeepPropValue";
 
 const deepObj = { a: { b: { c: 10 } } };
 const deepProp1 = 'a.b.c';
@@ -74,6 +74,39 @@ describe(`4.2) Get Deep Property's Value, access a object's deep property throug
     expect(result).to.eql(60);
   });
 });
+
+describe(`4.3) Has Own Deep Property, checks if an object has the received deep properties through the same notation used by 'getDeepPropValue'`, () => {
+  it(`4.3.1) hasOwnDeepProperty({ a: { b: { c: 10 } } }, 'a.b.c')    -> true`, () => {
+    let result = hasOwnDeepProperty(deepObj, deepProp1);
+    expect(result).to.eql(true);
+  });
+
+  it(`4.3.2) hasOwnDeepProperty({ a: { b: { c: 10 } } }, 'a.b')      -> true`, () => {
+    let result = hasOwnDeepProperty(deepObj, 'a.b');
+    expect(result).to.eql(true);
+  });
+
+  it(`4.3.3) hasOwnDeepProperty({ a: { b: { c: 10 } } }, 'a')        -> true`, () => {
+    let result = hasOwnDeepProperty(deepObj, 'a');
+    expect(result).to.eql(true);
+  });
+
+  it(`4.3.4) hasOwnDeepProperty({ a: { b: { c: 10 } } }, 'b')        -> false`, () => {
+    let result = hasOwnDeepProperty(deepObj, 'b');
+    expect(result).to.eql(false);
+  });
+
+  it(`4.3.5) hasOwnDeepProperty({ a: { b: { c: 10 } } }, 'c')        -> false`, () => {
+    let result = hasOwnDeepProperty(deepObj, 'c');
+    expect(result).to.eql(false);
+  });
+
+  it(`4.3.6) hasOwnDeepProperty({ a: { b: { c: 10 } } }, 0)          -> false`, () => {
+    let result = hasOwnDeepProperty(deepObj, 0);
+    expect(result).to.eql(false);
+  });
+});
+
 
 
 
