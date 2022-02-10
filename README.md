@@ -1,17 +1,20 @@
 # sort-object-array-by-property 
-Sorts an array of objects or an array of arrays according to a single property or index or an array of properties or indices.
+<br>
+Sorts an array of objects or an array of arrays according to a single property (objects) or index (arrays), or by multiple properties/indices, through an array of properties or indices. Supports properties from nested objects and indices from nested arrays.
 
----
+<br><br>
 Written in:
-* Typescript
+* <a href="https://www.typescriptlang.org/" target="_blank">Typescript</a>
 
----
-Test it online:
+<br><br>
+Test it on your preferred browser:
 * <a href="https://runkit.com/tomasfn87/62009884fc3f9f000804f0ba" target="_blank">sort-object-array-by-property - runkit.com</a>
 
----
+<br><br>
 # 1. Install via CLI with:
   * <a href="http://www.npmjs.com/package/@nighly/sort-object-array-by-property" target="_blank">npm i @nighly/sort-object-array-by-property</a>
+
+<br><br>
 # 2. Importing: 
   * import function 'sortObjectArrByProps' by adding one of the lines above to a Javascript or Typescript file:
 
@@ -47,7 +50,7 @@ Test it online:
     * single property: <strong>sortObjectArrByProps( </strong><i>object_array, prop_1</i><strong> )</strong>
     * three properties: <strong>sortObjectArrByProps( </strong><i>object_array, [ prop_1, prop_2, prop_3 ]</i><strong> )</strong>
 
----
+<br><br>
 # 3. Usage:
   - <strong>sortObjectArrByProps( </strong><i>objArr, objProps</i><strong> )</strong>
   - <strong>sortObjectArrByProps( </strong><i>objArr, objProps, reverse</i><strong> )</strong>
@@ -63,9 +66,27 @@ Test it online:
   <strong>3.2. two, more or all properties:</strong>
   * <i>["name", "age"]</i> or <i>["type", "price"]</i>; <i>[0, 1]</i> or <i>[2, 5]</i> (an array of objects' properties; an array of arrays' indices)
 ---
+
+  <strong>using nested objects' properties or nested arrays' indices to sort:</strong>
+  * To use nested objects' properties or nested arrays' indices, use the syntax: 
+    * 'a.b.c' &nbsp; -> &nbsp; &nbsp; &nbsp;{ a: { b: { c: 1 } } } &nbsp; &nbsp; &nbsp; &nbsp;-> 1
+    * '0.0.0' &nbsp; -> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;        [ [ [ 2 ] ] ] &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;-> 2
+
+---
+  * Also works with combinations of objects an arrays:
+    * 'a.0.b' &nbsp; -> &nbsp; &nbsp; &nbsp; { a: [ { b: 3 } ] } &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -> 3
+    * '0.a.0' &nbsp; -> &nbsp; &nbsp; &nbsp; &nbsp; [ { [ 4 ] } ] &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -> 4
+
+---
+  * <i>calling:</i>
+    * <strong>sorbObjectArrByProps( </strong><i>objArr</i>, <i>'a.b.c'</i><strong> )</strong>
+    * <strong>sortObjectArrByProps( </strong><i>arrArr</i>, <i>'0.0.0'</i><strong> )</strong>
+---
   * the third and optional parameter, '<strong>reverse</strong>', can receive as argument <strong>'r'</strong> or <strong>'R'</strong> to produce a reversed output
 ---
   * the original array remains untouched.
+
+<br><br>
 # 4. Examples:
 ---
 
