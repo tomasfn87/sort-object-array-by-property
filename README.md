@@ -8,7 +8,7 @@ Written in:
 
 <br><br>
 Test it on your preferred browser:
-* <a href="https://runkit.com/tomasfn87/62009884fc3f9f000804f0ba" target="_blank">sort-object-array-by-property - runkit.com</a>
+* <a href="https://runkit.com/tomasfn87/sort-object-array-by-property" target="_blank">sort-object-array-by-property - runkit.com</a>
 
 <br><br>
 # 1. Install via CLI with:
