@@ -140,6 +140,24 @@ const deepArrObjArrArr = [
   [ { a: [ 1 ] } ]
 ];
 
+const objArrWithBooleans = [
+  { a: false, b: 5 },
+  { b: 10 },
+  { a: false, b: 15 },
+  { b: 40 },
+  { a: false, b: 30 },
+  { a: false, b: 45 },
+  { b: 5 },
+  { a: false, b: 50 },
+  { a: true, b: 5 },
+  { b: 20 },
+  { a: true, b: 10 },
+  { a: true, b: 20 },
+  { a: true, b: 25 },
+  { b: 30 },
+  { a: true, b: 40 }
+]
+
 describe('3) Sort Object Array by Properties, takes an array of properties whose items will be used as sorting parameters.', () => {
   it(`3.1) ../sortObjArrByProps.ts.sortObjectArrByProps(
     [                    ->    [
@@ -802,6 +820,84 @@ describe('3) Sort Object Array by Properties, takes an array of properties whose
         [ { a: [ 3 ] } ],
         [ { a: [ 2 ] } ],
         [ { a: [ 1 ] } ]
+    ]);
+  });
+
+  it(`3.21) ../sortObjArrByProps.ts.sortObjectArrByProps(
+    [                         ->    [                       
+      { a: false, b: 5 },     ->      { a: false, b: 5 },
+      { b: 10 },              ->      { a: false, b: 15 },
+      { a: false, b: 15 },    ->      { a: false, b: 30 },
+      { b: 40 },              ->      { a: false, b: 45 },
+      { a: false, b: 30 },    ->      { a: false, b: 50 },
+      { a: false, b: 45 },    ->      { a: true, b: 5 },
+      { b: 5 },              ->       { a: true, b: 10 },
+      { a: false, b: 50 },    ->      { a: true, b: 20 },
+      { a: true, b: 5 },      ->      { a: true, b: 25 },
+      { b: 20 },              ->      { a: true, b: 40 },
+      { a: true, b: 10 },     ->      { b: 5 },
+      { a: true, b: 20 },     ->      { b: 10 },
+      { a: true, b: 25 },     ->      { b: 20 },
+      { b: 30 },              ->      { b: 30 },
+      { a: true, b: 40 }      ->      { b: 40 }
+    ],                        ->    ]
+  ["a", "b"])`, () => {
+    let result = sortObjectArrByProps(objArrWithBooleans, ["a", "b"]);
+      expect(result).to.eql([
+        { a: false, b: 5 },
+        { a: false, b: 15 },
+        { a: false, b: 30 },
+        { a: false, b: 45 },
+        { a: false, b: 50 },
+        { a: true, b: 5 },
+        { a: true, b: 10 },
+        { a: true, b: 20 },
+        { a: true, b: 25 },
+        { a: true, b: 40 },
+        { b: 5 },
+        { b: 10 },
+        { b: 20 },
+        { b: 30 },
+        { b: 40 }
+    ]);
+  });
+
+  it(`3.22) ../sortObjArrByProps.ts.sortObjectArrByProps(
+    [                         ->    [                       
+      { a: false, b: 5 },     ->      { b: 40 },
+      { b: 10 },              ->      { b: 30 },
+      { a: false, b: 15 },    ->      { b: 20 },
+      { b: 40 },              ->      { b: 10 },
+      { a: false, b: 30 },    ->      { b: 5 },
+      { a: false, b: 45 },    ->      { a: true, b: 40 },
+      { b: 5 },               ->      { a: true, b: 25 },
+      { a: false, b: 50 },    ->      { a: true, b: 20 },
+      { a: true, b: 5 },      ->      { a: true, b: 10 },
+      { b: 20 },              ->      { a: true, b: 5 },
+      { a: true, b: 10 },     ->      { a: false, b: 50 },
+      { a: true, b: 20 },     ->      { a: false, b: 45 },
+      { a: true, b: 25 },     ->      { a: false, b: 30 },
+      { b: 30 },              ->      { a: false, b: 15 },
+      { a: true, b: 40 }      ->      { a: false, b: 5 },
+    ],                        ->    ]
+  ["a", "b"], "r")`, () => {
+    let result = sortObjectArrByProps(objArrWithBooleans, ["a", "b"], "r");
+      expect(result).to.eql([
+        { b: 40 },
+        { b: 30 },
+        { b: 20 },
+        { b: 10 },
+        { b: 5 },
+        { a: true, b: 40 },
+        { a: true, b: 25 },
+        { a: true, b: 20 },
+        { a: true, b: 10 },
+        { a: true, b: 5 },
+        { a: false, b: 50 },
+        { a: false, b: 45 },
+        { a: false, b: 30 },
+        { a: false, b: 15 },
+        { a: false, b: 5 }
     ]);
   });
 });
