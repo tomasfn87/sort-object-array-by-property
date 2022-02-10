@@ -1,6 +1,6 @@
 {
   "name": "@nighly/sort-object-array-by-property",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "'sort-object-array-by-property' sorts an array of objects or arrays by one or all their properties, even if some objects don't have all the specified properties. Also works with deep objects and properties, using the syntax 'a.b.c' to access 'a', then 'b' and eventually 'c' from '{ a: { b: { c: 1 } } }'.",
   "main": "dist/sortObjArrByProps.js",
   "directories": {
@@ -11,7 +11,8 @@
     "test": "mocha -r ts-node/register ./src/test/*.test.ts",
     "test1": "mocha -r ts-node/register ./src/test/01-sortObjArrByPropIndexing.test.ts",
     "test2": "mocha -r ts-node/register ./src/test/02-sortObjArrByPropDirectly.test.ts",
-    "test3": "mocha -r ts-node/register ./src/test/03-sortObjArrByProps.test.ts"
+    "test3": "mocha -r ts-node/register ./src/test/03-sortObjArrByProps.test.ts",
+    "test4": "mocha -r ts-node/register ./src/test/04-getDeepPropValue.test.ts"
   },
   "files": [
     "dist/sortObjArrByProps.js",
