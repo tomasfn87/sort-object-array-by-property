@@ -19,11 +19,16 @@ export const getDeepPropValue = (
   propStr:prop
 ):value => {
   let prop = getDeepProp(propStr);
+
+  if (!hasOwnDeepProperty(obj, propStr)) {
+    return undefined
+  }
+
   if (!!Array.isArray(prop)) {
     let value:value;
     for (let i=0; i < prop.length; i++) {
-      if (i === 0) value = obj[prop[i]]
-      else value = value[prop[i]];
+        if (i === 0) value = obj[prop[i]]
+        else value = value[prop[i]];
     }
     return value;
   }
