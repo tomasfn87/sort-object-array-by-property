@@ -1,149 +1,163 @@
 import { getDeepPropValue, hasOwnDeepProperty } from "./getDeepPropValue";
 
-export type value = string | number | boolean | any                            // ideally a string or a number through which the list will be sorted, or some kind of data that can be turned into a string
-export type values = value[] | value[][]                                       // an array of 'value' or an array of arrays of 'value', used to sort a 'indices', using only one or all properties of the objects in 'objArr'
-export type index = number                                                     // a number used to index a position in an array
-export type indices = index[]                                                  // an array of 'index'
-export type prop = string | index                                              // a string for objects; an 'index' for arrays
-export type obj = {} | value[]                                                 // an object or an array
-export type objArr = readonly obj[] | any[]                                    // a read only array of objects or arrays
+export type value = string | number | boolean | any
+export type values = value[] | value[][]
+export type index = number
+export type indices = index[]
+export type prop = string | index
+export type obj = {} | value[]
+export type objArr = readonly obj[] | any[]
+export type highestValue = { value: value, type: string }[]
 
-export function sortObjectArrByProps<Type>(                                    // 0) Sort Object Array By Properties takes:
-  objArr: objArr,                                                              // 0.1) an array of objects or an array of arrays, that will be sorted according to:
-  objProps:                                                                    // 0.2) 0.2.1) between two and all their properties' values, 0.2.2) a single property's values
-    prop[]                                                                     // 0.2.1.1) an array of strings, 0.2.1.2) an array of numbers
-    | prop,                                                                    // 0.2.2.1) a number, 0.2.2.2) a string
-  reverse: 's' | 'S' | 'r' | 'R' = 's'                                         // 0.3.1) 's' -> standard, ascending order; 0.3.2) 'r' -> reverse, descending order: will reverse 'sortedObjectArray'
-  ):Type[] {                                                                   // 0.4) will return the items of 'objArr' ordered using 'objProps', leaving the original array untouched
-
-  let sortedObjectArray:Type[] = [];                                           // will be used to mount the ordered array after ordering a list of values (2) or a list of lists of values (1)
-  let values:values = [];                                                      // will store the values according to which the list will be sorted; may be all values if all objects' properties are passed to 'objProps'
-  let indices:indices = [];                                                    // will store the indices of the objects or arrays to mount 'sortedObjectArray' before the function returns
-  let highestValue:{ value:value, type:string }[] = [];                        // will store the highest values of an object array properties
-
-  const greaterString = (text:string):string => {                              // 'greaterString' receives a string:
-    if (text.length === 0) {                                                   // if the string is empty
-      return "0"                                                               // return "0"
-    } else {                                                                   // otherwise
-      const greaterFirstCharCode:number = text.charCodeAt(0) + 1               // read the string's first character's char code and add + 1
-      return `${String.fromCharCode(greaterFirstCharCode)}`                    // return a one character one-char-code-higher string
-    }
+const greaterString = (text: string): string => {
+  if (text.length === 0) {
+    return "0"
+  } else {
+    const greaterFirstCharCode: number = text.charCodeAt(0) + 1
+    return `${String.fromCharCode(greaterFirstCharCode)}`
   }
+}
 
-  const increment = (item:value):value => {                                    // 'increment' receives a string, a number or a boolean
-    if (typeof item === 'boolean') item = item.toString();                     // if a boolean is received, turn it into a string
-    if (typeof item === 'number') {
-      return item + 1;                                                         // Case one: number: adds + 1
-    } else if (typeof item === 'string') {
-      return greaterString(item);                                              // Case two: string: changes the first character to a one char code higher character
-    }
+const increment = (item: value): value => {
+  if (typeof item === 'boolean') item = item.toString();
+  if (typeof item === 'number') {
+    return item + 1;
+  } else if (typeof item === 'string') {
+    return greaterString(item);
   }
+}
 
-  if (!!Array.isArray(objProps)) {                                             // 1) Sort by two or all properties - obtaining highest values
-    for (let i=0; i < objProps.length; i++) {                                  // 1.1) for each property in 'objProps'
-      highestValue[i] = {                                                      // 1.1.1)
-        value: getDeepPropValue(objArr[0], objProps[i]),                       // 1.1.1.1) set 'highestValue[item].value' to 'objArr' first item's value
-        type: typeof getDeepPropValue(objArr[0], objProps[i])                  // 1.1.1.2) set 'highestValue[item].type' to 'objArr' first item's value type
+const getHighestValue = (
+  objArr: objArr,
+  objProps: prop | prop[]
+): highestValue => {
+  let highestValue: highestValue = [];
+  if (!!Array.isArray(objProps)) {
+    for (let i = 0; i < objProps.length; i++) {
+      highestValue[i] = {
+        value: getDeepPropValue(objArr[0], objProps[i]),
+        type: typeof getDeepPropValue(objArr[0], objProps[i])
       };
-      for (let j=1; j < objArr.length; j++) {                                  // 1.1.2) for each object in 'objArr'
-        if (getDeepPropValue(objArr[j], objProps[i]) !== undefined) {          // 1.1.2.1) if value is not undefined
-          if (highestValue[i].value === undefined                              // 1.1.2.1.1) if 'highestValue[item].value' is undefined
-          || getDeepPropValue(objArr[j], objProps[i]) 
-            > highestValue[i].value) {                                         // 1.1.2.1.1') or value is higher than 'highestValue[item].value'
-            highestValue[i].value = getDeepPropValue(objArr[j], objProps[i]);  // 1.1.2.1.1.1) set 'highestValue[item].value' to value
-            if (highestValue[i].type === 'undefined') {                        // 1.1.2.1.1.2) if 'highestValue[item].type' is 'undefined'
+      for (let j = 1; j < objArr.length; j++) {
+        if (!!getDeepPropValue(objArr[j], objProps[i])) {
+          if (highestValue[i].value === undefined
+            || getDeepPropValue(objArr[j], objProps[i])
+            > highestValue[i].value) {
+            highestValue[i].value = getDeepPropValue(objArr[j], objProps[i]);
+            if (highestValue[i].type === 'undefined') {
               highestValue[i].type =
-                typeof getDeepPropValue(objArr[i], objProps[i]);               // 1.1.2.1.1.2.1) set 'highestValue[item].type' to value's type
+                typeof getDeepPropValue(objArr[i], objProps[i]);
             }
           }
         }
       }
     }
-  } else {                                                                     // 2) Sort by a single property - obtaining highest value
-    highestValue[0] = {                                                        // 2.1)
-      value: getDeepPropValue(objArr[0], objProps),                            // 2.1.1) set 'highestValue[0].value' to 'objArr' first item's value
-      type: typeof getDeepPropValue(objArr[0], objProps)                       // 2.1.2) set 'highestValue[0].type' to 'objArr' first item's value's type
+  } else {
+    highestValue[0] = {
+      value: getDeepPropValue(objArr[0], objProps),
+      type: typeof getDeepPropValue(objArr[0], objProps)
     };
-    for (let i=1; i < objArr.length; i++) {                                    // 2.2) for each object in 'objArr'
-      if (getDeepPropValue(objArr[i], objProps) !== undefined) {               // 2.2.1) if value is not undefined
-        if (highestValue[0].value === undefined                                // 2.2.1.1) if 'highestValue[0].value' is undefined
-        || getDeepPropValue(objArr[i], objProps) > highestValue[0].value) {    // 2.2.1.1') or value is higher than 'highestValue[item].value'
-          highestValue[0].value = getDeepPropValue(objArr[i], objProps);       // 2.2.1.1.1) set 'highestValue[0].value' to value
-          if (highestValue[0].type === 'undefined') {                          // 2.2.1.1.2) if 'highestValue[0].type' is 'undefined'
+    for (let i = 1; i < objArr.length; i++) {
+      if (!!getDeepPropValue(objArr[i], objProps)) {
+        if (highestValue[0].value === undefined
+          || getDeepPropValue(objArr[i], objProps) > highestValue[0].value) {
+          highestValue[0].value = getDeepPropValue(objArr[i], objProps);
+          if (highestValue[0].type === 'undefined') {
             highestValue[0].type =
-              typeof getDeepPropValue(objArr[i], objProps);                    // 2.2.1.1.2.1) set 'highestValue[0].type' to value's type
+              typeof getDeepPropValue(objArr[i], objProps);
           }
         }
       }
     }
   }
+  return highestValue;
+}
 
-  if (!!Array.isArray(objProps)) {                                             // 1) Sort by two or all properties - collecting values
-    for (let i=0; i < objArr.length; i++) {                                    // 1.2) for each item of argument 'objArr'
-      values.push([]);                                                         // 1.2.1) add an empty array to 'values'
-      indices.push(i);                                                         // 1.2.2) and its index to 'indices'
+const getIndices = <Type>(
+  objArr: objArr,
+  objProps: prop | prop[]
+) => {
+  let highestValue: highestValue = getHighestValue(objArr, objProps);
+  let values: values = [];
+  let indices: indices = [];
+
+  if (!!Array.isArray(objProps)) {
+    for (let i = 0; i < objArr.length; i++) {
+      values.push([]);
+      indices.push(i);
     }
-    for (let j=0; j < objArr.length; j++) {                                    // 1.3) for each item of argument 'objArr'
-      for (let k=0; k < objProps.length; k++) {                                // 1.3.1) for each item of argument 'objProps'
-        if (hasOwnDeepProperty(objArr[j], objProps[k])) {                      // 1.3.1.1) if the current item (j) has property (k)
-          typeof getDeepPropValue(objArr[j], objProps[k]) === 'string'         // 1.3.1.1.1) if 'objProps' receives a string
-          || typeof getDeepPropValue(objArr[j], objProps[k]) === 'number'      // 1.3.1.1.1') or a number
-            ? values[j].push(getDeepPropValue(objArr[j], objProps[k]))         // 1.3.1.1.1.1) add it to 'values'
+    for (let j = 0; j < objArr.length; j++) {
+      for (let k = 0; k < objProps.length; k++) {
+        if (hasOwnDeepProperty(objArr[j], objProps[k])) {
+          typeof getDeepPropValue(objArr[j], objProps[k]) === 'string'
+            || typeof getDeepPropValue(objArr[j], objProps[k]) === 'number'
+            ? values[j].push(getDeepPropValue(objArr[j], objProps[k]))
             : values[j].push(
-              getDeepPropValue(objArr[j], objProps[k]).toString())             // 1.3.1.1.1.2) else (try to) turn it into a string and add it to 'values'
-        } else {                                                               // 1.3.1.2) else, if the current item (j) doesn't have property (k)
-          values[j].push(increment(highestValue[k].value))                     // 1.3.1.2.1) add a 'heavier' value to make empty values go down
+              getDeepPropValue(objArr[j], objProps[k]).toString()
+            )
+        } else {
+          values[j].push(increment(highestValue[k].value))
         }
       }
     }
-  } else {                                                                     // 2) Sort by a single property - collecting values
-    objArr.forEach((obj:Type | any, i:index):void => {                         // 2.2) for each item of argument 'objArr'
-      if (hasOwnDeepProperty(obj, objProps)) {                                 // 2.2.1) if the current item 'obj' has property 'objProps'
-        typeof getDeepPropValue(obj, objProps) === 'string'                    // 2.2.1.1) if 'objProps' receives a string
-        || typeof getDeepPropValue(obj, objProps) === 'number'                 // 2.2.1.1') or a number
-          ? values.push(getDeepPropValue(obj, objProps))                       // 2.2.1.1.1) add it to 'values'
-          : values.push(getDeepPropValue(obj, objProps).toString())            // 2.2.1.1.2) else (try to) turn it into a string and add it to 'values'
-      } else {                                                                 // 2.2.2) else, if the current item 'obj' doesn't have property 'objProps'
-        values.push(increment(highestValue[0].value))                          // 2.2.2.1) add a 'heavier' value to make empty values go down
+  } else {
+    objArr.forEach((obj: Type | any, i: index): void => {
+      if (hasOwnDeepProperty(obj, objProps)) {
+        typeof getDeepPropValue(obj, objProps) === 'string'
+          || typeof getDeepPropValue(obj, objProps) === 'number'
+          ? values.push(getDeepPropValue(obj, objProps))
+          : values.push(getDeepPropValue(obj, objProps).toString())
+      } else {
+        values.push(increment(highestValue[0].value))
       }
-      indices.push(i);                                                         // 2.2.3) add each item's index to 'indices'
+      indices.push(i);
     });
   }
 
-  if (!!Array.isArray(objProps)) {                                             // 1.4) Sort by two or all properties - swap logic
-    let k = 0;                                                                 // 1.4.1) starting 'objProps' index
-    for (let i=1; i < values.length; i++) {                                    // 1.4.2) sort optimization: at each iteration, the last value will be skipped (i)
-      for (let j=0; j < values.length - i;) {                                  // 1.4.2.1) 'values' index
-        if (values[j][k] === values[j+1][k]) {                                 // 1.4.2.1.1) Case one: values are equal
-          if (k === objProps.length - 1) {                                     // 1.4.2.1.1.1) all values are equal, can't sort
-            k = 0; j++;                                                        // 1.4.2.1.1.1.1) restart properties; check next value
-          } else {                                                             // 1.4.2.1.1.2) there are still properties to be checked
-            k++;                                                               // 1.4.2.1.1.2.1) check next property
+  if (!!Array.isArray(objProps)) {
+    let k = 0;
+    for (let i = 1; i < values.length; i++) {
+      for (let j = 0; j < values.length - i;) {
+        if (values[j][k] === values[j + 1][k]) {
+          if (k === objProps.length - 1) {
+            k = 0; j++;
+          } else {
+            k++;
           }
-        } else if (values[j][k] > values[j+1][k]) {                            // 1.4.2.1.1) Case two: first value > second value: swap the two values
-          [values[j], values[j+1]] = [values[j+1], values[j]];                 // 1.4.2.1.2.1) swap 'values'
-          [indices[j], indices[j+1]] = [indices[j+1], indices[j]];             // 1.4.2.1.2.2) swap 'indices'
-          k = 0; j++;                                                          // 1.4.2.1.2.3) restart properties; check next value
-        } else {                                                               // 1.4.2.1.3) Case three: first value < second value: already sorted, nothing to do
-          k = 0; j++;                                                          // 1.4.2.1.3.1) restart properties; check next value
+        } else if (values[j][k] > values[j + 1][k]) {
+          [values[j], values[j + 1]] = [values[j + 1], values[j]];
+          [indices[j], indices[j + 1]] = [indices[j + 1], indices[j]];
+          k = 0; j++;
+        } else {
+          k = 0; j++;
         }
       }
     }
-  } else {                                                                     // 2.3) Sorting by a single property - swap logic
-    for (let i=1; i < values.length; i++) {                                    // 2.3.1) sort optimization: at each iteration, the last value will be skipped (i++): the algorithm pushes the heaviest value to the bottom
-      for (let j=0; j < values.length - i; j++) {                              // 2.3.2) 'values' index
-        if (values[j] > values[j+1]) {                                         // 2.3.2.1.1) Single case: first value is greater than second value
-          [values[j], values[j+1]] = [values[j+1], values[j]];                 // 2.3.3.1.1.1) swap 'values'
-          [indices[j], indices[j+1]] = [indices[j+1], indices[j]];             // 2.3.3.1.1.2) swap 'indices'
+  } else {
+    for (let i = 1; i < values.length; i++) {
+      for (let j = 0; j < values.length - i; j++) {
+        if (values[j] > values[j + 1]) {
+          [values[j], values[j + 1]] = [values[j + 1], values[j]];
+          [indices[j], indices[j + 1]] = [indices[j + 1], indices[j]];
         }
       }
     }
   }
-
-  for (let i of indices) {                                                     // *.1) populate 'sortedObjArr'
-    sortedObjectArray.push(objArr[i]);                                         // *.1.1) add each of the received object array's items following 'indices' values
-  }
-
-  reverse === 'r'.toLowerCase() && sortedObjectArray.reverse();                // *.2) if 'reverse' receives 'r' or 'R' as argument, 'sortedObjectArray' is reversed
-  return sortedObjectArray;                                                    // *.2.1) return a copy of 'objArr' sorted by 'objProps'
+  return indices;
 }
+
+export const sortObjectArrByProps = <Type>(
+  objArr: objArr,
+  objProps: prop[] | prop,
+  reverse: 's' | 'S' | 'r' | 'R' = 's'
+): Type[] => {
+  let indices = getIndices(objArr, objProps)
+  let sortedObjectArray: Type[] = [];
+
+  for (let i of indices) {
+    sortedObjectArray.push(objArr[i]);
+  }
+
+  reverse === 'r'.toLowerCase() && sortedObjectArray.reverse();
+  return sortedObjectArray;
+}                                    
