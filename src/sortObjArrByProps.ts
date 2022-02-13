@@ -10,9 +10,8 @@ export type objArr = readonly obj[] | any[]
 export type highestValue = { value: value, type: string }[]
 
 const greaterString = (text: string): string => {
-  if (text.length === 0) {
-    return "0"
-  } else {
+  if (text.length === 0) return "0"
+  else {
     const greaterFirstCharCode: number = text.charCodeAt(0) + 1
     return `${String.fromCharCode(greaterFirstCharCode)}`
   }
@@ -20,11 +19,8 @@ const greaterString = (text: string): string => {
 
 const increment = (item: value): value => {
   if (typeof item === 'boolean') item = item.toString();
-  if (typeof item === 'number') {
-    return item + 1;
-  } else if (typeof item === 'string') {
-    return greaterString(item);
-  }
+  if (typeof item === 'number') return item + 1;
+  else if (typeof item === 'string') return greaterString(item);
 }
 
 const getHighestValue = (
@@ -39,16 +35,13 @@ const getHighestValue = (
         type: typeof getDeepPropValue(objArr[0], objProps[i])
       };
       for (let j = 1; j < objArr.length; j++) {
-        if (!!getDeepPropValue(objArr[j], objProps[i])) {
-          if (highestValue[i].value === undefined
-            || getDeepPropValue(objArr[j], objProps[i])
-            > highestValue[i].value) {
-            highestValue[i].value = getDeepPropValue(objArr[j], objProps[i]);
-            if (highestValue[i].type === 'undefined') {
-              highestValue[i].type =
-                typeof getDeepPropValue(objArr[i], objProps[i]);
-            }
-          }
+        if (!!getDeepPropValue(objArr[j], objProps[i])
+          && !highestValue[i].value
+          || getDeepPropValue(objArr[j], objProps[i])
+          > highestValue[i].value) {
+          highestValue[i].value = getDeepPropValue(objArr[j], objProps[i]);
+          highestValue[i].type =
+            typeof getDeepPropValue(objArr[i], objProps[i]);
         }
       }
     }
@@ -58,22 +51,18 @@ const getHighestValue = (
       type: typeof getDeepPropValue(objArr[0], objProps)
     };
     for (let i = 1; i < objArr.length; i++) {
-      if (!!getDeepPropValue(objArr[i], objProps)) {
-        if (highestValue[0].value === undefined
-          || getDeepPropValue(objArr[i], objProps) > highestValue[0].value) {
-          highestValue[0].value = getDeepPropValue(objArr[i], objProps);
-          if (highestValue[0].type === 'undefined') {
-            highestValue[0].type =
-              typeof getDeepPropValue(objArr[i], objProps);
-          }
-        }
+      if (!!getDeepPropValue(objArr[i], objProps)
+        && !highestValue[0].value
+        || getDeepPropValue(objArr[i], objProps) > highestValue[0].value) {
+        highestValue[0].value = getDeepPropValue(objArr[i], objProps);
+        highestValue[0].type = typeof getDeepPropValue(objArr[i], objProps);
       }
     }
   }
   return highestValue;
 }
 
-const getIndices = <Type>(
+const sortIndices = <Type>(
   objArr: objArr,
   objProps: prop | prop[]
 ) => {
@@ -95,22 +84,18 @@ const getIndices = <Type>(
             : values[j].push(
               getDeepPropValue(objArr[j], objProps[k]).toString()
             )
-        } else {
-          values[j].push(increment(highestValue[k].value))
-        }
+        } else values[j].push(increment(highestValue[k].value))
       }
     }
   } else {
     objArr.forEach((obj: Type | any, i: index): void => {
+      indices.push(i);
       if (hasOwnDeepProperty(obj, objProps)) {
         typeof getDeepPropValue(obj, objProps) === 'string'
           || typeof getDeepPropValue(obj, objProps) === 'number'
           ? values.push(getDeepPropValue(obj, objProps))
           : values.push(getDeepPropValue(obj, objProps).toString())
-      } else {
-        values.push(increment(highestValue[0].value))
-      }
-      indices.push(i);
+      } else values.push(increment(highestValue[0].value))
     });
   }
 
@@ -151,10 +136,9 @@ export const sortObjectArrByProps = <Type>(
   objProps: prop[] | prop,
   reverse: 's' | 'S' | 'r' | 'R' = 's'
 ): Type[] => {
-  let indices = getIndices(objArr, objProps)
   let sortedObjectArray: Type[] = [];
 
-  for (let i of indices) {
+  for (let i of sortIndices(objArr, objProps)) {
     sortedObjectArray.push(objArr[i]);
   }
 
