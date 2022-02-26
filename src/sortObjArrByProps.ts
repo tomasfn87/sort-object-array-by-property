@@ -164,6 +164,6 @@ const greaterString = (text: string): string => {
   if (text.length === 0) return "0"
   else {
     const greaterFirstCharCode: number = text.charCodeAt(0) + 1
-    return `${String.fromCharCode(greaterFirstCharCode)}`
+    return String.fromCharCode(greaterFirstCharCode)
   }
 }
