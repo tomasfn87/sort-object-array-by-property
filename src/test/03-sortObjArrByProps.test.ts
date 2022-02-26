@@ -956,4 +956,142 @@ describe('3) Sort Object Array by Properties, takes an array of properties whose
         { a: { b: false }, c: '2', d: 5 }
     ]);
   });
+
+  it(`3.25) ../sortObjArrByProps.ts.sortObjectArrByProps(
+    [                                        ->    [                       
+      { c: '2', d: 5 },                      ->      { a: { b: false }, c: '2', d: 5 },
+      { a: { b: true }, c: '11', d: 11 },    ->      { a: { b: false }, c: '20', d: 3 },
+      { a: { b: false }, c: '3', d: 10 },    ->      { a: { b: false }, c: '3', d: 10 },
+      { a: { b: true }, c: '11', d: 6 },     ->      { a: { b: true }, c: '11', d: 6 },
+      { a: { b: false }, c: '20', d: 3 },    ->      { a: { b: true }, c: '11', d: 11 },
+      { a: { b: false }, c: '2', d: 5 },     ->      { c: '2', d: 5 },
+      { c: '2', d: 10 }                      ->      { c: '2', d: 10 }
+    ],                                       ->    ]
+  ["a.b", "c", "d"], 's')`, () => {
+    let result = sortObjectArrByProps(undefinedDeepObj, ["a.b", "c", "d"], 's');
+      expect(result).to.eql([
+        { a: { b: false }, c: '2', d: 5 },
+        { a: { b: false }, c: '20', d: 3 },
+        { a: { b: false }, c: '3', d: 10 },
+        { a: { b: true }, c: '11', d: 6 },
+        { a: { b: true }, c: '11', d: 11 },
+        { c: '2', d: 5 },
+        { c: '2', d: 10 }
+    ]);
+  });
+
+  it(`3.26) ../sortObjArrByProps.ts.sortObjectArrByProps(
+    [                                        ->    [                       
+      { c: '2', d: 5 },                      ->      { c: '2', d: 10 },
+      { a: { b: true }, c: '11', d: 11 },    ->      { c: '2', d: 5 },
+      { a: { b: false }, c: '3', d: 10 },    ->      { a: { b: true }, c: '11', d: 11 },
+      { a: { b: true }, c: '11', d: 6 },     ->      { a: { b: true }, c: '11', d: 6 },
+      { a: { b: false }, c: '20', d: 3 },    ->      { a: { b: false }, c: '3', d: 10 },
+      { a: { b: false }, c: '2', d: 5 },     ->      { a: { b: false }, c: '20', d: 3 },
+      { c: '2', d: 10 }                      ->      { a: { b: false }, c: '2', d: 5 }
+    ],                                       ->    ]
+  ["a.b", "c", "d"], 'r')`, () => {
+    let result = sortObjectArrByProps(undefinedDeepObj, ["a.b", "c", "d"], "r");
+      expect(result).to.eql([
+        { c: '2', d: 10 },
+        { c: '2', d: 5 },
+        { a: { b: true }, c: '11', d: 11 },
+        { a: { b: true }, c: '11', d: 6 },
+        { a: { b: false }, c: '3', d: 10 },
+        { a: { b: false }, c: '20', d: 3 },
+        { a: { b: false }, c: '2', d: 5 }
+    ]);
+  });
+
+  it(`3.27) ../sortObjArrByProps.ts.sortObjectArrByProps(
+    [                                        ->    [                       
+      { c: '2', d: 5 },                      ->      { a: { b: false }, c: '2', d: 5 },
+      { a: { b: true }, c: '11', d: 11 },    ->      { a: { b: false }, c: '20', d: 3 },
+      { a: { b: false }, c: '3', d: 10 },    ->      { a: { b: false }, c: '3', d: 10 },
+      { a: { b: true }, c: '11', d: 6 },     ->      { a: { b: true }, c: '11', d: 6 },
+      { a: { b: false }, c: '20', d: 3 },    ->      { a: { b: true }, c: '11', d: 11 },
+      { a: { b: false }, c: '2', d: 5 },     ->      { c: '2', d: 5 },
+      { c: '2', d: 10 }                      ->      { c: '2', d: 10 }
+    ],                                       ->    ]
+  ["a.b", "c", "d"], 'ssss')`, () => {
+    let result = sortObjectArrByProps(undefinedDeepObj, ["a.b", "c", "d"], '...');
+      expect(result).to.eql([
+        { a: { b: false }, c: '2', d: 5 },
+        { a: { b: false }, c: '20', d: 3 },
+        { a: { b: false }, c: '3', d: 10 },
+        { a: { b: true }, c: '11', d: 6 },
+        { a: { b: true }, c: '11', d: 11 },
+        { c: '2', d: 5 },
+        { c: '2', d: 10 }
+    ]);
+  });
+
+  it(`3.28) ../sortObjArrByProps.ts.sortObjectArrByProps(
+    [                                        ->    [                       
+      { c: '2', d: 5 },                      ->      { c: '2', d: 10 },
+      { a: { b: true }, c: '11', d: 11 },    ->      { c: '2', d: 5 },
+      { a: { b: false }, c: '3', d: 10 },    ->      { a: { b: true }, c: '11', d: 11 },
+      { a: { b: true }, c: '11', d: 6 },     ->      { a: { b: true }, c: '11', d: 6 },
+      { a: { b: false }, c: '20', d: 3 },    ->      { a: { b: false }, c: '3', d: 10 },
+      { a: { b: false }, c: '2', d: 5 },     ->      { a: { b: false }, c: '20', d: 3 },
+      { c: '2', d: 10 }                      ->      { a: { b: false }, c: '2', d: 5 }
+    ],                                       ->    ]
+  ["a.b", "c", "d"], 'rrrr')`, () => {
+    let result = sortObjectArrByProps(undefinedDeepObj, ["a.b", "c", "d"], "rrr");
+      expect(result).to.eql([
+        { c: '2', d: 10 },
+        { c: '2', d: 5 },
+        { a: { b: true }, c: '11', d: 11 },
+        { a: { b: true }, c: '11', d: 6 },
+        { a: { b: false }, c: '3', d: 10 },
+        { a: { b: false }, c: '20', d: 3 },
+        { a: { b: false }, c: '2', d: 5 }
+    ]);
+  });
+
+  it(`3.29) ../sortObjArrByProps.ts.sortObjectArrByProps(
+    [                                        ->    [                       
+      { c: '2', d: 5 },                      ->      { a: { b: false }, c: '3', d: 10 },
+      { a: { b: true }, c: '11', d: 11 },    ->      { a: { b: false }, c: '20', d: 3 },
+      { a: { b: false }, c: '3', d: 10 },    ->      { a: { b: false }, c: '2', d: 5 },
+      { a: { b: true }, c: '11', d: 6 },     ->      { a: { b: true }, c: '11', d: 6 },
+      { a: { b: false }, c: '20', d: 3 },    ->      { a: { b: true }, c: '11', d: 11 },
+      { a: { b: false }, c: '2', d: 5 },     ->      { c: '2', d: 5 },
+      { c: '2', d: 10 }                      ->      { c: '2', d: 10 }
+    ],                                       ->    ]
+  ["a.b", "c", "d"], 'srsr')`, () => {
+    let result = sortObjectArrByProps(undefinedDeepObj, ["a.b", "c", "d"], "ara");
+      expect(result).to.eql([
+        { a: { b: false }, c: '3', d: 10 },
+        { a: { b: false }, c: '20', d: 3 },
+        { a: { b: false }, c: '2', d: 5 },
+        { a: { b: true }, c: '11', d: 6 },
+        { a: { b: true }, c: '11', d: 11 },
+        { c: '2', d: 5 },
+        { c: '2', d: 10 }
+    ]);
+  });
+
+  it(`3.30) ../sortObjArrByProps.ts.sortObjectArrByProps(
+    [                                        ->    [                       
+      { c: '2', d: 5 },                      ->      { c: '2', d: 10 },
+      { a: { b: true }, c: '11', d: 11 },    ->      { c: '2', d: 5 },
+      { a: { b: false }, c: '3', d: 10 },    ->      { a: { b: true }, c: '11', d: 11 },
+      { a: { b: true }, c: '11', d: 6 },     ->      { a: { b: true }, c: '11', d: 6 },
+      { a: { b: false }, c: '20', d: 3 },    ->      { a: { b: false }, c: '2', d: 5 },
+      { a: { b: false }, c: '2', d: 5 },     ->      { a: { b: false }, c: '20', d: 3 },
+      { c: '2', d: 10 }                      ->      { a: { b: false }, c: '3', d: 10 }
+    ],                                       ->    ]
+  ["a.b", "c", "d"], 'rar')`, () => {
+    let result = sortObjectArrByProps(undefinedDeepObj, ["a.b", "c", "d"], "r R");
+      expect(result).to.eql([
+        { c: '2', d: 10 },
+        { c: '2', d: 5 },
+        { a: { b: true }, c: '11', d: 11 },
+        { a: { b: true }, c: '11', d: 6 },
+        { a: { b: false }, c: '2', d: 5 },
+        { a: { b: false }, c: '20', d: 3 },
+        { a: { b: false }, c: '3', d: 10 }
+    ]);
+  });
 });

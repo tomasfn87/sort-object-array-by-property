@@ -8,7 +8,6 @@ export type prop = string | index
 export type obj = {} | value[]
 export type objArr = readonly obj[] | any[]
 export type highestValue = { value: value, type: string }[]
-export type lowestValue = { value: value, type: string }[]
 
 export const sortObjectArrByProps = <Type>(
   objArr: objArr,
