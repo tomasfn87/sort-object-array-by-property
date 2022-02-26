@@ -84,9 +84,50 @@ Test it on your preferred browser:
     * <strong>sorbObjectArrByProps( </strong><i>objArr</i>, <i>'a.b.c'</i><strong> )</strong>
     * <strong>sortObjectArrByProps( </strong><i>arrArr</i>, <i>'0.0.0'</i><strong> )</strong>
 ---
-  * the third and optional parameter, '<strong>reverse</strong>', can receive as argument <strong>'r'</strong> or <strong>'R'</strong> to produce a reversed output
+  * the third and optional parameter, '<strong>reverse</strong>', can receive as argument a string, an each <strong>'r'</strong> or <strong>'R'</strong> will be used to produce a reversed output in the corresponding property:
+
+```
+   sortObjectArrByProps(peopleArr, ["country", "age", "first_name"], 'srs')
+
+   '            s            '           r          '             s              '
+   by country standard order > by age reverse order > by first_name standard order
+```
+
+* While 's' is the standard notation, any string value different from 'r' or 'R' will be accepted:
+```
+   sortObjectArrByProps(gamesArr, ["year", "platform", "title"], 'r..')
+
+   '            r           '              .              '           .            '
+   by year descending order > by platform ascending order > by title ascending order
+```
+* the same way
+
+```
+   sortObjectArrByProps(objList, ["prop1", "prop2"], 's')
+
+   or
+
+   sortObjectArrByProps(arrList, [1, 2], 's')
+```
+   * produces the same output as 
+
+```
+   sortObjectArrByProps(objList, ["prop1", "prop2"])
+
+   or 
+
+   sortObjectArrByProps(arrList, [1, 2])
+```
 ---
-  * the original array remains untouched.
+  * 'sortObjectArrByProps' returns a new array, leaving the source array untouched, so (re)attribute it to a variable to store or update the values:
+
+```
+   users.list = sortObjectArrByProps(users.list, ["birth_date", "email", "first_name"], "..R")
+
+   or
+
+   var sorted_orders = sortObjectArrByProps(order, ["date.year", "date.month", "date.day", "date.time", "id"], "RrRr.")
+```
 
 <br><br>
 # 4. Examples:
@@ -94,20 +135,20 @@ Test it on your preferred browser:
 
 ```
 sortObjectArrByProps([
-  { a: 4, b: 2 },    ->   { a: 1, b: 4 },
-  { a: 3, b: 5 },    ->   { a: 2, b: 3 },
-  { a: 1, b: 4 },    ->   { a: 3, b: 5 },
-  { a: 5, b: 1 },    ->   { a: 4, b: 2 },
-  { a: 2, b: 3 }     ->   { a: 5, b: 1 }
-], 'a')
+  [ 4, 2 ],    ->   [ 1, 4 ],
+  [ 3, 5 ],    ->   [ 2, 3 ],
+  [ 1, 4 ],    ->   [ 3, 5 ],
+  [ 5, 1 ],    ->   [ 4, 2 ],
+  [ 2, 3 ]     ->   [ 5, 1 ]
+], 0)
 
 sortObjectArrByProps([
-  { a: 4, b: 2 },    ->   { a: 5, b: 1 },
-  { a: 3, b: 5 },    ->   { a: 4, b: 2 },
-  { a: 1, b: 4 },    ->   { a: 3, b: 5 },
-  { a: 5, b: 1 },    ->   { a: 2, b: 3 },
-  { a: 2, b: 3 }     ->   { a: 1, b: 4 }
-], 'a', 'r')
+  [ 4, 2 ],    ->   [ 5, 1 ], 
+  [ 3, 5 ],    ->   [ 4, 2 ],
+  [ 1, 4 ],    ->   [ 3, 5 ],
+  [ 5, 1 ],    ->   [ 2, 3 ],
+  [ 2, 3 ]     ->   [ 1, 4 ]
+], 0, 'r')
 
 sortObjectArrByProps([
   { a: 4, b: 2 },    ->   { a: 5, b: 1 },
@@ -166,4 +207,14 @@ sortObjectArrByProps([
   { a: { b: false }, c: '2', d: 5 },     ->    { c: '2', d: 5 },
   { c: '2', d: 10 }                      ->    { c: '2', d: 10 }
 ], [ 'a.b', 'c', 'd' ])
+
+sortObjectArrByProps([
+  { c: '2', d: 5 },                      ->    { a: { b: false }, c: '3', d: 10 },
+  { a: { b: true }, c: '11', d: 11 },    ->    { a: { b: false }, c: '20', d: 3 },
+  { a: { b: false }, c: '3', d: 10 },    ->    { a: { b: false }, c: '2', d: 5 },
+  { a: { b: true }, c: '11', d: 6 },     ->    { a: { b: true }, c: '11', d: 11 },
+  { a: { b: false }, c: '20', d: 3 },    ->    { a: { b: true }, c: '11', d: 6 },
+  { a: { b: false }, c: '2', d: 5 },     ->    { c: '2', d: 10 },
+  { c: '2', d: 10 }                      ->    { c: '2', d: 5 }
+], [ 'a.b', 'c', 'd' ], '.rr')
 ```
