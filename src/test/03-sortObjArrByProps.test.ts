@@ -1037,7 +1037,7 @@ describe('3) Sort Object Array by Properties, takes an array of properties whose
       { c: '2', d: 10 }                      ->      { a: { b: false }, c: '2', d: 5 }
     ],                                       ->    ]
   ["a.b", "c", "d"], 'rrrr')`, () => {
-    let result = sortObjectArrByProps(undefinedDeepObj, ["a.b", "c", "d"], "rrr");
+    let result = sortObjectArrByProps(undefinedDeepObj, ["a.b", "c", "d"], "RrR");
       expect(result).to.eql([
         { c: '2', d: 10 },
         { c: '2', d: 5 },
