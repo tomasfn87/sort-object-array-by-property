@@ -38,7 +38,7 @@ const sortIndices = <Type>(
     }
     if (reverse.length > 1) {
       for (let c = 0; c < reverse.length; c++) {
-        if (reverse[c] === 'r'.toLowerCase() && hasOwnDeepProperty(order, c)) {
+        if (reverse[c] === 'r' && order.hasOwnProperty(c)) {
           order[c] = 'r'
         }
       }
