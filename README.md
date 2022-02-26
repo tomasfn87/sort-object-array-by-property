@@ -89,7 +89,7 @@ Test it on your preferred browser:
 ```
    sortObjectArrByProps(peopleArr, ["country", "age", "first_name"], 'srs')
 
-   '            s            '           r          '             s              '
+   (            s           )(           r         )(              s             )
    by country standard order > by age reverse order > by first_name standard order
 ```
 
@@ -97,7 +97,7 @@ Test it on your preferred browser:
 ```
    sortObjectArrByProps(gamesArr, ["year", "platform", "title"], 'r..')
 
-   '            r           '              .              '           .            '
+   (            r          )(               .            )(            .           )
    by year descending order > by platform ascending order > by title ascending order
 ```
 * the same way
