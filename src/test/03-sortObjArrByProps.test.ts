@@ -235,7 +235,7 @@ describe('3) Sort Object Array by Properties, takes an array of properties whose
       { a: 9, b: 2 },    ->      { a: 2, b: 8 },
       { a: 7, b: 5 }     ->      { a: 1, b: 7 }
     ],                   ->    ]
-  "a", "i")`, () => {
+  "a", "r")`, () => {
     let result = sortObjectArrByProps(objArr, "a", "r");
     expect(result).to.eql([
       { a: 9, b: 2 },
@@ -967,8 +967,8 @@ describe('3) Sort Object Array by Properties, takes an array of properties whose
       { a: { b: false }, c: '2', d: 5 },     ->      { c: '2', d: 5 },
       { c: '2', d: 10 }                      ->      { c: '2', d: 10 }
     ],                                       ->    ]
-  ["a.b", "c", "d"], 's')`, () => {
-    let result = sortObjectArrByProps(undefinedDeepObj, ["a.b", "c", "d"], 's');
+  ["a.b", "c", "d"], "s")`, () => {
+    let result = sortObjectArrByProps(undefinedDeepObj, ["a.b", "c", "d"], "s");
       expect(result).to.eql([
         { a: { b: false }, c: '2', d: 5 },
         { a: { b: false }, c: '20', d: 3 },
@@ -990,7 +990,7 @@ describe('3) Sort Object Array by Properties, takes an array of properties whose
       { a: { b: false }, c: '2', d: 5 },     ->      { a: { b: false }, c: '20', d: 3 },
       { c: '2', d: 10 }                      ->      { a: { b: false }, c: '2', d: 5 }
     ],                                       ->    ]
-  ["a.b", "c", "d"], 'r')`, () => {
+  ["a.b", "c", "d"], "r")`, () => {
     let result = sortObjectArrByProps(undefinedDeepObj, ["a.b", "c", "d"], "r");
       expect(result).to.eql([
         { c: '2', d: 10 },
@@ -1013,8 +1013,8 @@ describe('3) Sort Object Array by Properties, takes an array of properties whose
       { a: { b: false }, c: '2', d: 5 },     ->      { c: '2', d: 5 },
       { c: '2', d: 10 }                      ->      { c: '2', d: 10 }
     ],                                       ->    ]
-  ["a.b", "c", "d"], 'ssss')`, () => {
-    let result = sortObjectArrByProps(undefinedDeepObj, ["a.b", "c", "d"], '...');
+  ["a.b", "c", "d"], "....")`, () => {
+    let result = sortObjectArrByProps(undefinedDeepObj, ["a.b", "c", "d"], "....");
       expect(result).to.eql([
         { a: { b: false }, c: '2', d: 5 },
         { a: { b: false }, c: '20', d: 3 },
@@ -1036,7 +1036,7 @@ describe('3) Sort Object Array by Properties, takes an array of properties whose
       { a: { b: false }, c: '2', d: 5 },     ->      { a: { b: false }, c: '20', d: 3 },
       { c: '2', d: 10 }                      ->      { a: { b: false }, c: '2', d: 5 }
     ],                                       ->    ]
-  ["a.b", "c", "d"], 'rrrr')`, () => {
+  ["a.b", "c", "d"], "RrR")`, () => {
     let result = sortObjectArrByProps(undefinedDeepObj, ["a.b", "c", "d"], "RrR");
       expect(result).to.eql([
         { c: '2', d: 10 },
@@ -1059,7 +1059,7 @@ describe('3) Sort Object Array by Properties, takes an array of properties whose
       { a: { b: false }, c: '2', d: 5 },     ->      { c: '2', d: 5 },
       { c: '2', d: 10 }                      ->      { c: '2', d: 10 }
     ],                                       ->    ]
-  ["a.b", "c", "d"], 'srsr')`, () => {
+  ["a.b", "c", "d"], "ara")`, () => {
     let result = sortObjectArrByProps(undefinedDeepObj, ["a.b", "c", "d"], "ara");
       expect(result).to.eql([
         { a: { b: false }, c: '3', d: 10 },
@@ -1082,7 +1082,7 @@ describe('3) Sort Object Array by Properties, takes an array of properties whose
       { a: { b: false }, c: '2', d: 5 },     ->      { a: { b: false }, c: '20', d: 3 },
       { c: '2', d: 10 }                      ->      { a: { b: false }, c: '3', d: 10 }
     ],                                       ->    ]
-  ["a.b", "c", "d"], 'rar')`, () => {
+  ["a.b", "c", "d"], "r R")`, () => {
     let result = sortObjectArrByProps(undefinedDeepObj, ["a.b", "c", "d"], "r R");
       expect(result).to.eql([
         { c: '2', d: 10 },
