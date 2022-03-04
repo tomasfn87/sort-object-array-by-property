@@ -1,6 +1,6 @@
 # sort-object-array-by-property 
 <br>
-Sorts an array of objects or an array of arrays according to a single property (objects) or index (arrays), or by multiple properties/indices, through an array of properties or indices. Supports properties from nested objects and indices from nested arrays.
+Sorts an array of objects or an array of arrays according to a single property (objects) or index (arrays), or by multiple properties/indices, through an array of properties or indices. Supports properties from nested objects and indices from nested arrays. Each set of values (the values that correspond to each property) can be sorted in ascending or descending order.
 
 <br><br>
 Written in:
@@ -84,7 +84,17 @@ Test it on your preferred browser:
     * <strong>sorbObjectArrByProps( </strong><i>objArr</i>, <i>'a.b.c'</i><strong> )</strong>
     * <strong>sortObjectArrByProps( </strong><i>arrArr</i>, <i>'0.0.0'</i><strong> )</strong>
 ---
-  * the third and optional parameter, '<strong>reverse</strong>', can receive as argument a string, an each <strong>'r'</strong> or <strong>'R'</strong> will be used to produce a reversed output in the corresponding property:
+  * the third and optional parameter, '<strong>reverse</strong>', can receive as argument a string:
+    * a single <strong>'r'</strong> (or <strong>'R'</strong>) will reverse the whole list;
+    * if only one set of values or some of the sets of values need to be reversed, a string with length greater than 1 containg <strong>'r'</strong> or <strong>'R'</strong> must be passed; 
+    * only a <strong>'r'</strong> or a <strong>'R'</strong> matters: any other character will just be used to determine which set of values will be reversed, according to the properties or indices passed in array format to <strong>objProps</strong>.
+    * Examples:
+
+```
+   sortObjectArrByProps(peopleArr, ["country", "age", "first_name"], 'r')
+
+   the whole list will be reversed
+```
 
 ```
    sortObjectArrByProps(peopleArr, ["country", "age", "first_name"], 'srs')
