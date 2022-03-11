@@ -1,6 +1,6 @@
 # sort-object-array-by-property 
 <br>
-Sorts an array of objects or an array of arrays according to a single property (objects) or index (arrays), or by multiple properties/indices, through an array of properties or indices. Supports properties from nested objects and indices from nested arrays. Each set of values (the values that correspond to each property) can be sorted in ascending or descending order.
+Sorts an array of objects or an array of arrays according to a single property (objects) or index (arrays), or by multiple properties/indices, through an array of properties or indices, including the 'length' property (for arrays and strings). Supports properties from nested objects and indices from nested arrays. Each set of values (the values that correspond to each property) can be sorted in ascending or descending order. 
 
 <br><br>
 Written in:
@@ -207,6 +207,24 @@ sortObjectArrByProps([
   { a: 1, b: 1 },    ->   { a: 2, b: 1 },
   { a: 3, b: 3 }     ->   { a: 1, b: 1 }
 ], [ 'b', 'a' ], 'r')
+
+sortObjectArrByProps([
+  [[],[],[],[],[]],       ->      [[]],
+  [[]],                   ->      [[],[]],
+  [[],[],[],[],[],[]],    ->      [[],[],[]],
+  [[],[],[]],             ->      [[],[],[],[]],
+  [[],[]],                ->      [[],[],[],[],[]],
+  [[],[],[],[]]           ->      [[],[],[],[],[],[]],
+], 'length')
+
+sortObjectArrByProps([
+  [[],[],[],[],[]],       ->      [[],[],[],[],[],[]],
+  [[]],                   ->      [[],[],[],[],[]],
+  [[],[],[],[],[],[]],    ->      [[],[],[],[]],
+  [[],[],[]],             ->      [[],[],[]],
+  [[],[]],                ->      [[],[]],
+  [[],[],[],[]]           ->      [[]],
+], 'length, 'r')
 
 sortObjectArrByProps([
   { c: '2', d: 5 },                      ->    { a: { b: false }, c: '2', d: 5 },
