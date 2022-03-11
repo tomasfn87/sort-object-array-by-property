@@ -168,6 +168,15 @@ const undefinedDeepObj = [
   { c: '2', d: 10 }
 ]
 
+const arrEmptyArrs = [
+  [[],[],[],[],[]],
+  [[]],
+  [[],[],[],[],[],[]],
+  [[],[],[]],
+  [[],[]],
+  [[],[],[],[]]
+]
+
 describe('3) Sort Object Array by Properties, takes an array of properties whose items will be used as sorting parameters.', () => {
   it(`3.1) ../sortObjArrByProps.ts.sortObjectArrByProps(
     [                    ->    [
@@ -1092,6 +1101,48 @@ describe('3) Sort Object Array by Properties, takes an array of properties whose
         { a: { b: false }, c: '2', d: 5 },
         { a: { b: false }, c: '20', d: 3 },
         { a: { b: false }, c: '3', d: 10 }
+    ]);
+  });
+
+  it(`3.31) ../sortObjArrByProps.ts.sortObjectArrByProps(
+    [                         ->    [                       
+      [[],[],[],[],[]],       ->      [[]],
+      [[]],                   ->      [[],[]],
+      [[],[],[],[],[],[]],    ->      [[],[],[]],
+      [[],[],[]],             ->      [[],[],[],[]],
+      [[],[],],               ->      [[],[],[],[],[]],
+      [[],[],[],[]]           ->      [[],[],[],[],[],[]]
+    ],                        ->    ]
+  ["length"])`, () => {
+    let result = sortObjectArrByProps(arrEmptyArrs, "length");
+      expect(result).to.eql([   
+        [[]],
+        [[],[]],
+        [[],[],[]],
+        [[],[],[],[]],
+        [[],[],[],[],[]],
+        [[],[],[],[],[],[]]
+    ]);
+  });
+
+  it(`3.32) ../sortObjArrByProps.ts.sortObjectArrByProps(
+    [                         ->    [                       
+      [[],[],[],[],[]],       ->      [[],[],[],[],[],[]],
+      [[]],                   ->      [[],[],[],[],[]],
+      [[],[],[],[],[],[]],    ->      [[],[],[],[]],
+      [[],[],[]],             ->      [[],[],[]],
+      [[],[],],               ->      [[],[]],
+      [[],[],[],[]]           ->      [[]]
+    ],                        ->    ]
+  ["length", "r"])`, () => {
+    let result = sortObjectArrByProps(arrEmptyArrs, "length", "r");
+      expect(result).to.eql([   
+        [[],[],[],[],[],[]],
+        [[],[],[],[],[]],
+        [[],[],[],[]],
+        [[],[],[]],
+        [[],[]],
+        [[]]
     ]);
   });
 });
