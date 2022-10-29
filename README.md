@@ -14,9 +14,11 @@ _Test it on your preferred browser_:
 ---
 <br><br><br>
 
-## 1) Install package (`npm`):
+## 1) Install package via [`npm`](http://www.npmjs.com/package/@nighly/sort-object-array-by-property):
 
-[__npm i @nighly/sort-object-array-by-property__](http://www.npmjs.com/package/@nighly/sort-object-array-by-property)
+```shell
+npm i @nighly/sort-object-array-by-property
+```
 
 <br>
 
@@ -57,8 +59,10 @@ const { sortObjectArrByProps } = require("@nighly/sort-object-array-by-property"
   - `calling`:
 
 ```javascript
-/* `single property`:  */  sortObjectArrByProps( object_array, prop_1 );
-/* `three properties`: */  sortObjectArrByProps( object_array, [ prop_1, prop_2, prop_3 ] );
+// single property:
+sortObjectArrByProps( object_array, prop_1 );
+// three properties:
+sortObjectArrByProps( object_array, [ prop_1, prop_2, prop_3 ] );
 ```
 
 <br><br>
@@ -75,8 +79,10 @@ import { sortObjectArrByProps } from '@nighly/sort-object-array-by-property/dist
   - add `"type": "module"` to `package.json` or change file extension from `.js` to `.mjs`
 
 ```javascript
-/* single property_:   */  sortObjectArrByProps( object_array, prop_1 );
-/* three properties_:  */  sortObjectArrByProps( object_array, [ prop_1, prop_2, prop_3 ] );
+// single property:
+sortObjectArrByProps( object_array, prop_1 );
+// three properties:
+sortObjectArrByProps( object_array, [ prop_1, prop_2, prop_3 ] );
 ```
 
 <br><br>
@@ -92,8 +98,10 @@ import { sortObjectArrByProps } from "@nighly/sort-object-array-by-property";
 - `calling`:
 
 ```javascript
-/* single property_:   */  sortObjectArrByProps( object_array, prop_1 );
-/* three properties_:  */  sortObjectArrByProps( object_array, [ prop_1, prop_2, prop_3 ] );
+// single property:
+sortObjectArrByProps( object_array, prop_1 );
+// three properties:
+sortObjectArrByProps( object_array, [ prop_1, prop_2, prop_3 ] );
 ```
 
 <br><br>
