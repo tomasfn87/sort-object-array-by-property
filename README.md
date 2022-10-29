@@ -42,8 +42,10 @@ const sortObjs = require('@nighly/sort-object-array-by-property');
 - `calling`:
 
 ```javascript
-/* single property:    */  sortObjs.sortObjectArrByProps( object_array, prop_1 );
-/* three properties:   */  sortObjs.sortObjectArrByProps( object_array, [ prop_1, prop_2, prop_3 ] );
+// single property:
+sortObjs.sortObjectArrByProps( object_array, prop_1 );
+// three properties:
+sortObjs.sortObjectArrByProps( object_array, [ prop_1, prop_2, prop_3 ] );
 ```
 
 <br>
