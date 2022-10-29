@@ -1,248 +1,339 @@
-# sort-object-array-by-property 
+# sort-object-array-by-property
+
+<br><br><br>
+
+_Sorts an_ `array of objects` _or an_ `array of arrays` _according to a_ __single property__ (`objects`) _or_ __index__ (`arrays`)_, or by_ __multiple properties/indices__, through an __array of properties or indices__, _including the_`length` _property_ (for `arrays` and `strings`). _Supports properties from_ __nested objects__ _and indices from_ __nested arrays__. _Each set of values_ (the values that correspond to each property) _can be sorted in_ __ascending__ _or_ __descending__ _order_.
+
+<br><br>
+
+_Test it on your preferred browser_:
+- [__sort-object-array-by-property__](https://runkit.com/tomasfn87/sort-object-array-by-property)
+
 <br>
-Sorts an array of objects or an array of arrays according to a single property (objects) or index (arrays), or by multiple properties/indices, through an array of properties or indices, including the 'length' property (for arrays and strings). Supports properties from nested objects and indices from nested arrays. Each set of values (the values that correspond to each property) can be sorted in ascending or descending order. 
 
+---
+<br><br><br>
+
+## 1) Install package (`npm`):
+
+[__npm i @nighly/sort-object-array-by-property__](http://www.npmjs.com/package/@nighly/sort-object-array-by-property)
+
+<br>
+
+---
 <br><br>
-Written in:
-* <a href="https://www.typescriptlang.org/" target="_blank">Typescript</a>
 
-<br><br>
-Test it on your preferred browser:
-* <a href="https://runkit.com/tomasfn87/sort-object-array-by-property" target="_blank">sort-object-array-by-property - runkit.com</a>
+## 2) Import package:
 
-<br><br>
-# 1. Install package:
-  * <a href="http://www.npmjs.com/package/@nighly/sort-object-array-by-property" target="_blank">npm i @nighly/sort-object-array-by-property</a>
+- import function `sortObjectArrByProps` by adding one of the lines below to a `Javascript` or `Typescript` file:
 
-<br><br>
-# 2. Import package: 
-  * import function 'sortObjectArrByProps' by adding one of the lines above to a Javascript or Typescript file:
+<br>
 
----
-  <strong>2.1. CommonJs:</strong>
-  * <i>importing:</i>
-    * const sortObjs = require("@nighly/sort-object-array-by-property");
-  * <i>calling:</i>
-    * single property: <strong><i>sortObjs</i>.sortObjectArrByProps( </strong><i>object_array, prop_1</i><strong> )</strong>
-    * three properties: <strong><i>sortObjs</i>.sortObjectArrByProps( </strong><i>object_array, [prop_1, prop_2, prop_3]</i><strong> )</strong>
+### 2.1) `CommonJs`:
 
-  <strong>2.1.1. CommonJs with destructuring</strong> (shorter call):
-  * <i>importing:</i>
-    * const { sortObjectArrByProps } = require("@nighly/sort-object-array-by-property");
-  * <i>calling:</i>
-    * single property: <strong>sortObjectArrByProps( </strong><i>object_array, prop_1</i><strong> )</strong>
-    * three properties: <strong>sortObjectArrByProps( </strong><i>object_array, [prop_1, prop_2, prop_3]</i><strong> )</strong>
+- `importing`:
 
----  
-  <strong>2.2. ES:</strong>
-  * <i>importing:</i>
-    * import { sortObjectArrByProps } from "@nighly/sort-object-array-by-property/dist/sortObjArrByProps.js";
-  * <i>calling:</i>
-    * add <strong>"type": "module"</strong> to 'package.json' or change file extension from <strong>'.js'</strong> to <strong>'.mjs'</strong>
-    * single property: <strong>sortObjectArrByProps( </strong><i>object_array, prop_1</i><strong> )</strong>
-    * three properties: <strong>sortObjectArrByProps( </strong><i>object_array, [ prop_1, prop_2, prop_3 ]</i><strong> )</strong>
-
----
-  <strong>2.3. Typescript:</strong>
-  * <i>importing:</i>
-    * import { sortObjectArrByProps } from "@nighly/sort-object-array-by-property";
-  * <i>calling:</i>
-    * single property: <strong>sortObjectArrByProps( </strong><i>object_array, prop_1</i><strong> )</strong>
-    * three properties: <strong>sortObjectArrByProps( </strong><i>object_array, [ prop_1, prop_2, prop_3 ]</i><strong> )</strong>
-
-<br><br>
-# 3. Usage:
-  - <strong>sortObjectArrByProps( </strong><i>objArr, objProps</i><strong> )</strong>
-  - <strong>sortObjectArrByProps( </strong><i>objArr, objProps, reverse</i><strong> )</strong>
-  - <strong>sortObjectArrByProps( </strong><i>objArr, [ ...objProps ]</i><strong> )</strong>
-  - <strong>sortObjectArrByProps( </strong><i>objArr, [ ...objProps ]</i>, reverse<strong> )</strong>
----
-  '<strong>sortObjectArrByProps</strong>' sorts '<strong>objArr</strong>', an array containing objects or other arrays according to '<strong>objProps</strong>' value(s), that can be either:
-
----
-  <strong>3.1. a single property:</strong>
-  * <i>"name"</i> or <i>"_id"</i> (an object's property); <i>0</i> or <i>2</i> (an array's index)
----
-  <strong>3.2. two, more or all properties:</strong>
-  * <i>["name", "age"]</i> or <i>["type", "price"]</i>; <i>[0, 1]</i> or <i>[2, 5]</i> (an array of objects' properties; an array of arrays' indices)
----
-
-  <strong>using nested objects' properties or nested arrays' indices to sort:</strong>
-  * To use nested objects' properties or nested arrays' indices, use the syntax: 
+```javascript
+const sortObjs = require('@nighly/sort-object-array-by-property');
 ```
-  'a.b.c'    ->    { a: { b: { c: 1 } } }    ->    1
-  '0.0.0'    ->        [ [ [ 2 ] ] ]         ->    2
-```
----
-  * Also works with combinations of objects an arrays:
-```  
-  'a.0.b'    ->      { a: [ { b: 3 } ] }     ->    3
-  '0.a.0'    ->       [ { a: [ 4 ] } ]       ->    4
-```
----
-  * <i>calling:</i>
-    * <strong>sorbObjectArrByProps( </strong><i>objArr</i>, <i>'a.b.c'</i><strong> )</strong>
-    * <strong>sortObjectArrByProps( </strong><i>arrArr</i>, <i>'0.0.0'</i><strong> )</strong>
----
-  * the third and optional parameter, '<strong>reverse</strong>', can receive as argument a string:
-    * a single <strong>'r'</strong> (or <strong>'R'</strong>) will reverse the whole list;
-    * if only one set of values or some of the sets of values need to be reversed, a string with length greater than 1 containg <strong>'r'</strong> or <strong>'R'</strong> must be passed; 
-    * only a <strong>'r'</strong> or a <strong>'R'</strong> matters: any other character will just be used to determine which set of values will be reversed, according to the properties or indices passed in array format to <strong>objProps</strong>.
-    * Examples:
 
+- `calling`:
+
+```javascript
+/* single property:    */  sortObjs.sortObjectArrByProps( object_array, prop_1 );
+/* three properties:   */  sortObjs.sortObjectArrByProps( object_array, [ prop_1, prop_2, prop_3 ] );
 ```
+
+<br>
+
+#### 2.1.1) `CommonJs` with _destructuring_ (_shorter call_):
+
+- `importing`:
+
+```javascript
+const { sortObjectArrByProps } = require("@nighly/sort-object-array-by-property");
+```
+
+  - `calling`:
+
+```javascript
+/* `single property`:  */  sortObjectArrByProps( object_array, prop_1 );
+/* `three properties`: */  sortObjectArrByProps( object_array, [ prop_1, prop_2, prop_3 ] );
+```
+
+<br><br>
+
+### 2.2) `ES`:
+
+- `importing`:
+
+```javascript
+import { sortObjectArrByProps } from '@nighly/sort-object-array-by-property/dist/sortObjArrByProps.js';
+```
+
+- `calling`:
+  - add `"type": "module"` to `package.json` or change file extension from `.js` to `.mjs`
+
+```javascript
+/* single property_:   */  sortObjectArrByProps( object_array, prop_1 );
+/* three properties_:  */  sortObjectArrByProps( object_array, [ prop_1, prop_2, prop_3 ] );
+```
+
+<br><br>
+
+### 2.3) `Typescript`:
+
+- `importing`:
+
+```javascript
+import { sortObjectArrByProps } from "@nighly/sort-object-array-by-property";
+```
+
+- `calling`:
+
+```javascript
+/* single property_:   */  sortObjectArrByProps( object_array, prop_1 );
+/* three properties_:  */  sortObjectArrByProps( object_array, [ prop_1, prop_2, prop_3 ] );
+```
+
+<br><br>
+
+## 3) Usage:
+
+```javascript
+sortObjectArrByProps( objArr, objProps );
+sortObjectArrByProps( objArr, objProps, reverse );
+sortObjectArrByProps( objArr, [ ...objProps ] );
+sortObjectArrByProps( objArr, [ ...objProps ], reverse );
+```
+
+---
+
+`sortObjectArrByProps` sorts `objArr`, an `array` containing `objects` or other `arrays` according to `objProps` value(s), that can be either:
+
+<br><br>
+
+### 3.1) a _single property_:
+
+- `"name"` or `"id"` (an `object's property`); `0` or `2` (an `array's index`)
+
+<br><br>
+
+### 3.2) _two, more or all properties_:
+
+- `["name", "age"]` or `["type", "price"]`; `[0, 1]` or `[2, 5]` (an `array of objects' properties`; an `array of arrays' indices`)
+
+<br><br>
+
+#### _Using_ `nested objects' properties` _or_ `nested arrays' indices` _to sort_:
+
+- to use `nested objects' properties` or `nested arrays' indices`, use the syntax:
+
+```javascript
+  'a.b.c' //  ->  { a: { b: { c: 1 } } }  ->  1
+  '0.0.0' //  ->      [ [ [ 2 ] ] ]       ->  2
+```
+
+<br>
+
+- _also works with combinations of objects an arrays_:
+
+```javascript
+  'a.0.b' //  ->   { a: [ { b: 3 } ] }    ->  3
+  '0.a.0' //  ->    [ { a: [ 4 ] } ]      ->  4
+```
+
+<br>
+
+- `calling`:
+
+```javascript
+sorbObjectArrByProps( objArr, 'a.b.c' );
+sortObjectArrByProps( arrArr, '0.0.0' );
+```
+
+---
+
+<br><br>
+
+- _the third and optional parameter,_ `reverse`_, can receive as argument a_ `string`:
+  - a single `r` (or `R`) will reverse the whole list;
+  - if only one set of values or some of the sets of values need to be reversed, a string with `length` greater than `1` containg `r` or `R` must be passed;
+  - only a `r` or a `R` matters: any other character will just be used to determine which set of values will be reversed, according to the `properties` or `indices` passed in `array` format to `objProps`.
+
+<br><br>
+
+### _Examples_:
+
+```javascript
    sortObjectArrByProps(peopleArr, ["country", "age", "first_name"], 'r')
-
-   the whole list will be reversed
+// the whole list will be reversed
 ```
 
-```
+<br>
+
+```javascript
    sortObjectArrByProps(peopleArr, ["country", "age", "first_name"], 'srs')
-
-   (            s           )(           r         )(              s             )
-   by country standard order > by age reverse order > by first_name standard order
+/* (            s           )(           r         )(              s             )
+   by country standard order > by age reverse order > by first_name standard order */
 ```
 
-* While 's' is the standard notation, any string value different from 'r' or 'R' will be accepted:
-```
+<br>
+
+* While `s` is the standard notation, any string value different from `r` or `R` will be accepted:
+
+```javascript
    sortObjectArrByProps(gamesArr, ["year", "platform", "title"], 'r..')
-
-   (            r          )(               .            )(            .           )
-   by year descending order > by platform ascending order > by title ascending order
+/* (            r          )(               .            )(            .           )
+   by year descending order > by platform ascending order > by title ascending order */
 ```
-* the same way
 
-```
+<br><br>
+
+- _the same way_
+
+```javascript
    sortObjectArrByProps(objList, ["prop1", "prop2"], 's')
 
-   or
+// or
 
    sortObjectArrByProps(arrList, [1, 2], 's')
 ```
-   * produces the same output as 
 
-```
+<br>
+
+- _produces the same output as_
+
+```javascript
    sortObjectArrByProps(objList, ["prop1", "prop2"])
 
-   or 
+// or
 
    sortObjectArrByProps(arrList, [1, 2])
 ```
----
-  * 'sortObjectArrByProps' returns a new array, leaving the source array untouched, so (re)attribute it to a variable to store or update the values:
-
-```
-   users.list = sortObjectArrByProps(users.list, ["birth_date", "email", "first_name"], "..R")
-
-   or
-
-   var sorted_orders = sortObjectArrByProps(order, ["date.year", "date.month", "date.day", "date.time", "id"], "RrRr.")
-```
 
 <br><br>
-# 4. Examples:
+
+- `sortObjectArrByProps` returns a `new array`, leaving the `source array` untouched, so (re)attribute it to a variable to store or update the values:
+
+```javascript
+// updating
+   users.list = sortObjectArrByProps(users.list, ["birth_date", "email", "first_name"], "..R")
+// or
+// storing
+   let sorted_orders = sortObjectArrByProps(order, ["date.year", "date.month", "date.day", "date.time", "id"], "RrRr.")
+```
+
 ---
 
-```
+<br><br>
+
+## 4) _Examples_:
+
+<br><br>
+
+_The comments represent the outputs_.
+
+```javascript
 sortObjectArrByProps([
-  [ 4, 2 ],    ->   [ 1, 4 ],
-  [ 3, 5 ],    ->   [ 2, 3 ],
-  [ 1, 4 ],    ->   [ 3, 5 ],
-  [ 5, 1 ],    ->   [ 4, 2 ],
-  [ 2, 3 ]     ->   [ 5, 1 ]
-], 0)
+  [ 4, 2 ],                             // ->    [ 1, 4 ],
+  [ 3, 5 ],                             // ->    [ 2, 3 ],
+  [ 1, 4 ],                             // ->    [ 3, 5 ],
+  [ 5, 1 ],                             // ->    [ 4, 2 ],
+  [ 2, 3 ]                              // ->    [ 5, 1 ]
+], 0);
 
 sortObjectArrByProps([
-  [ 4, 2 ],    ->   [ 5, 1 ], 
-  [ 3, 5 ],    ->   [ 4, 2 ],
-  [ 1, 4 ],    ->   [ 3, 5 ],
-  [ 5, 1 ],    ->   [ 2, 3 ],
-  [ 2, 3 ]     ->   [ 1, 4 ]
-], 0, 'r')
+  [ 4, 2 ],                             // ->    [ 5, 1 ],
+  [ 3, 5 ],                             // ->    [ 4, 2 ],
+  [ 1, 4 ],                             // ->    [ 3, 5 ],
+  [ 5, 1 ],                             // ->    [ 2, 3 ],
+  [ 2, 3 ]                              // ->    [ 1, 4 ]
+], 0, 'r');
 
 sortObjectArrByProps([
-  { a: 4, b: 2 },    ->   { a: 5, b: 1 },
-  { a: 3, b: 5 },    ->   { a: 4, b: 2 },
-  { a: 1, b: 4 },    ->   { a: 2, b: 3 },
-  { a: 5, b: 1 },    ->   { a: 1, b: 4 },
-  { a: 2, b: 3 }     ->   { a: 3, b: 5 }
-], 'b')
+  { a: 4, b: 2 },                       // ->    { a: 5, b: 1 },
+  { a: 3, b: 5 },                       // ->    { a: 4, b: 2 },
+  { a: 1, b: 4 },                       // ->    { a: 2, b: 3 },
+  { a: 5, b: 1 },                       // ->    { a: 1, b: 4 },
+  { a: 2, b: 3 }                        // ->    { a: 3, b: 5 }
+], 'b');
 
 sortObjectArrByProps([
-  { a: 4, b: 2 },    ->   { a: 3, b: 5 },
-  { a: 3, b: 5 },    ->   { a: 1, b: 4 },
-  { a: 1, b: 4 },    ->   { a: 2, b: 3 },
-  { a: 5, b: 1 },    ->   { a: 4, b: 2 },
-  { a: 2, b: 3 }     ->   { a: 5, b: 1 }
-], 'b', 'r')
+  { a: 4, b: 2 },                       // ->    { a: 3, b: 5 },
+  { a: 3, b: 5 },                       // ->    { a: 1, b: 4 },
+  { a: 1, b: 4 },                       // ->    { a: 2, b: 3 },
+  { a: 5, b: 1 },                       // ->    { a: 4, b: 2 },
+  { a: 2, b: 3 }                        // ->    { a: 5, b: 1 }
+], 'b', 'r');
 
 sortObjectArrByProps([
-  { a: 1, b: 2 },    ->   { a: 1, b: 1 },
-  { a: 2, b: 2 },    ->   { a: 1, b: 2 },
-  { a: 2, b: 1 },    ->   { a: 2, b: 1 },
-  { a: 1, b: 1 },    ->   { a: 2, b: 2 },
-  { a: 3, b: 3 }     ->   { a: 3, b: 3 }
-], [ 'a', 'b' ])
+  { a: 1, b: 2 },                       // ->    { a: 1, b: 1 },
+  { a: 2, b: 2 },                       // ->    { a: 1, b: 2 },
+  { a: 2, b: 1 },                       // ->    { a: 2, b: 1 },
+  { a: 1, b: 1 },                       // ->    { a: 2, b: 2 },
+  { a: 3, b: 3 }                        // ->    { a: 3, b: 3 }
+], [ 'a', 'b' ]);
 
 sortObjectArrByProps([
-  { a: 1, b: 2 },    ->   { a: 3, b: 3 },
-  { a: 2, b: 2 },    ->   { a: 2, b: 2 },
-  { a: 2, b: 1 },    ->   { a: 2, b: 1 },
-  { a: 1, b: 1 },    ->   { a: 1, b: 2 },
-  { a: 3, b: 3 }     ->   { a: 1, b: 1 }
-], [ 'a', 'b' ], 'r')
+  { a: 1, b: 2 },                       // ->    { a: 3, b: 3 },
+  { a: 2, b: 2 },                       // ->    { a: 2, b: 2 },
+  { a: 2, b: 1 },                       // ->    { a: 2, b: 1 },
+  { a: 1, b: 1 },                       // ->    { a: 1, b: 2 },
+  { a: 3, b: 3 }                        // ->    { a: 1, b: 1 }
+], [ 'a', 'b' ], 'r');
 
 sortObjectArrByProps([
-  { a: 1, b: 2 },    ->   { a: 1, b: 1 },
-  { a: 2, b: 2 },    ->   { a: 2, b: 1 },
-  { a: 2, b: 1 },    ->   { a: 1, b: 2 },
-  { a: 1, b: 1 },    ->   { a: 2, b: 2 },
-  { a: 3, b: 3 }     ->   { a: 3, b: 3 }
-], [ 'b', 'a' ])
+  { a: 1, b: 2 },                       // ->    { a: 1, b: 1 },
+  { a: 2, b: 2 },                       // ->    { a: 2, b: 1 },
+  { a: 2, b: 1 },                       // ->    { a: 1, b: 2 },
+  { a: 1, b: 1 },                       // ->    { a: 2, b: 2 },
+  { a: 3, b: 3 }                        // ->    { a: 3, b: 3 }
+], [ 'b', 'a' ]);
 
 sortObjectArrByProps([
-  { a: 1, b: 2 },    ->   { a: 3, b: 3 },
-  { a: 2, b: 2 },    ->   { a: 2, b: 2 },
-  { a: 2, b: 1 },    ->   { a: 1, b: 2 },
-  { a: 1, b: 1 },    ->   { a: 2, b: 1 },
-  { a: 3, b: 3 }     ->   { a: 1, b: 1 }
-], [ 'b', 'a' ], 'r')
+  { a: 1, b: 2 },                       // ->    { a: 3, b: 3 },
+  { a: 2, b: 2 },                       // ->    { a: 2, b: 2 },
+  { a: 2, b: 1 },                       // ->    { a: 1, b: 2 },
+  { a: 1, b: 1 },                       // ->    { a: 2, b: 1 },
+  { a: 3, b: 3 }                        // ->    { a: 1, b: 1 }
+], [ 'b', 'a' ], 'r');
 
 sortObjectArrByProps([
-  [[],[],[],[],[]],       ->      [[]],
-  [[]],                   ->      [[],[]],
-  [[],[],[],[],[],[]],    ->      [[],[],[]],
-  [[],[],[]],             ->      [[],[],[],[]],
-  [[],[]],                ->      [[],[],[],[],[]],
-  [[],[],[],[]]           ->      [[],[],[],[],[],[]],
-], 'length')
+  { c: '2', d: 5 },                     // ->     { a: { b: false }, c: '2', d: 5 },
+  { a: { b: true }, c: '11', d: 11 },   // ->     { a: { b: false }, c: '20', d: 3 },
+  { a: { b: false }, c: '3', d: 10 },   // ->     { a: { b: false }, c: '3', d: 10 },
+  { a: { b: true }, c: '11', d: 6 },    // ->     { a: { b: true }, c: '11', d: 6 },
+  { a: { b: false }, c: '20', d: 3 },   // ->     { a: { b: true }, c: '11', d: 11 },
+  { a: { b: false }, c: '2', d: 5 },    // ->     { c: '2', d: 5 },
+  { c: '2', d: 10 }                     // ->     { c: '2', d: 10 }
+], [ 'a.b', 'c', 'd' ]);
 
 sortObjectArrByProps([
-  [[],[],[],[],[]],       ->      [[],[],[],[],[],[]],
-  [[]],                   ->      [[],[],[],[],[]],
-  [[],[],[],[],[],[]],    ->      [[],[],[],[]],
-  [[],[],[]],             ->      [[],[],[]],
-  [[],[]],                ->      [[],[]],
-  [[],[],[],[]]           ->      [[]],
-], 'length, 'r')
+  { c: '2', d: 5 },                     // ->     { a: { b: false }, c: '3', d: 10 },
+  { a: { b: true }, c: '11', d: 11 },   // ->     { a: { b: false }, c: '20', d: 3 },
+  { a: { b: false }, c: '3', d: 10 },   // ->     { a: { b: false }, c: '2', d: 5 },
+  { a: { b: true }, c: '11', d: 6 },    // ->     { a: { b: true }, c: '11', d: 11 },
+  { a: { b: false }, c: '20', d: 3 },   // ->     { a: { b: true }, c: '11', d: 6 },
+  { a: { b: false }, c: '2', d: 5 },    // ->     { c: '2', d: 10 },
+  { c: '2', d: 10 }                     // ->     { c: '2', d: 5 }
+], [ 'a.b', 'c', 'd' ], '.rr');
 
 sortObjectArrByProps([
-  { c: '2', d: 5 },                      ->    { a: { b: false }, c: '2', d: 5 },
-  { a: { b: true }, c: '11', d: 11 },    ->    { a: { b: false }, c: '20', d: 3 },
-  { a: { b: false }, c: '3', d: 10 },    ->    { a: { b: false }, c: '3', d: 10 },
-  { a: { b: true }, c: '11', d: 6 },     ->    { a: { b: true }, c: '11', d: 6 },
-  { a: { b: false }, c: '20', d: 3 },    ->    { a: { b: true }, c: '11', d: 11 },
-  { a: { b: false }, c: '2', d: 5 },     ->    { c: '2', d: 5 },
-  { c: '2', d: 10 }                      ->    { c: '2', d: 10 }
-], [ 'a.b', 'c', 'd' ])
+  [[],[],[],[],[]],                     // ->     [[]],
+  [[]],                                 // ->     [[],[]],
+  [[],[],[],[],[],[]],                  // ->     [[],[],[]],
+  [[],[],[]],                           // ->     [[],[],[],[]],
+  [[],[]],                              // ->     [[],[],[],[],[]],
+  [[],[],[],[]]                         // ->     [[],[],[],[],[],[]]
+], 'length');
 
 sortObjectArrByProps([
-  { c: '2', d: 5 },                      ->    { a: { b: false }, c: '3', d: 10 },
-  { a: { b: true }, c: '11', d: 11 },    ->    { a: { b: false }, c: '20', d: 3 },
-  { a: { b: false }, c: '3', d: 10 },    ->    { a: { b: false }, c: '2', d: 5 },
-  { a: { b: true }, c: '11', d: 6 },     ->    { a: { b: true }, c: '11', d: 11 },
-  { a: { b: false }, c: '20', d: 3 },    ->    { a: { b: true }, c: '11', d: 6 },
-  { a: { b: false }, c: '2', d: 5 },     ->    { c: '2', d: 10 },
-  { c: '2', d: 10 }                      ->    { c: '2', d: 5 }
-], [ 'a.b', 'c', 'd' ], '.rr')
+  [[],[],[],[],[]],                     // ->     [[],[],[],[],[],[]],
+  [[]],                                 // ->     [[],[],[],[],[]],
+  [[],[],[],[],[],[]],                  // ->     [[],[],[],[]],
+  [[],[],[]],                           // ->     [[],[],[]],
+  [[],[]],                              // ->     [[],[]],
+  [[],[],[],[]]                         // ->     [[]]
+], 'length, 'r');
 ```
