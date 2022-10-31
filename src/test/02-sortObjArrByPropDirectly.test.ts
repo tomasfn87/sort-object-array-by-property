@@ -14,21 +14,21 @@ const objArr = [
 ]
 
 const arrArr = [
-  [ 7, 5, 2, 3 ],
-  [ 9, 2, 4, 5 ],
-  [ 1, 7, 5, 9 ],
-  [ 4, 1, 7, 1 ],
-  [ 6, 3, 1, 4 ],
-  [ 5, 4, 9, 7 ],
-  [ 2, 8, 3, 2 ],
-  [ 3, 6, 8, 6 ],
-  [ 8, 9, 6, 8 ]
+  [7, 5, 2, 3],
+  [9, 2, 4, 5],
+  [1, 7, 5, 9],
+  [4, 1, 7, 1],
+  [6, 3, 1, 4],
+  [5, 4, 9, 7],
+  [2, 8, 3, 2],
+  [3, 6, 8, 6],
+  [8, 9, 6, 8]
 ]
 
 describe('2) Sort Object Array by Property Directly, obtaining a list of values and then sorting it and the object array in parallel.', () => {
   it(`2.1) ../sortObjArrByProp.ts.sortObjectArrByPropDirectly(
     [                    ->    [
-      { a: 7, b: 5 },    ->      { a: 1, b: 7 },  
+      { a: 7, b: 5 },    ->      { a: 1, b: 7 },
       { a: 9, b: 2 },    ->      { a: 2, b: 8 },
       { a: 1, b: 7 },    ->      { a: 3, b: 6 },
       { a: 4, b: 1 },    ->      { a: 4, b: 1 },
@@ -55,7 +55,7 @@ describe('2) Sort Object Array by Property Directly, obtaining a list of values 
 
   it(`2.2) ../sortObjArrByProp.ts.sortObjectArrByPropDirectly(
     [                    ->    [
-      { a: 7, b: 5 },    ->      { a: 4, b: 1 },  
+      { a: 7, b: 5 },    ->      { a: 4, b: 1 },
       { a: 9, b: 2 },    ->      { a: 9, b: 2 },
       { a: 1, b: 7 },    ->      { a: 6, b: 3 },
       { a: 4, b: 1 },    ->      { a: 5, b: 4 },
@@ -122,15 +122,15 @@ describe('2) Sort Object Array by Property Directly, obtaining a list of values 
   0)`, () => {
     let result = sortObjectArrByPropDirectly(arrArr, 0);
     expect(result).to.eql([
-      [ 1, 7, 5, 9 ],
-      [ 2, 8, 3, 2 ],
-      [ 3, 6, 8, 6 ],
-      [ 4, 1, 7, 1 ],
-      [ 5, 4, 9, 7 ],
-      [ 6, 3, 1, 4 ],
-      [ 7, 5, 2, 3 ],
-      [ 8, 9, 6, 8 ],
-      [ 9, 2, 4, 5 ]
+      [1, 7, 5, 9],
+      [2, 8, 3, 2],
+      [3, 6, 8, 6],
+      [4, 1, 7, 1],
+      [5, 4, 9, 7],
+      [6, 3, 1, 4],
+      [7, 5, 2, 3],
+      [8, 9, 6, 8],
+      [9, 2, 4, 5]
     ]);
   });
 
@@ -149,15 +149,15 @@ describe('2) Sort Object Array by Property Directly, obtaining a list of values 
   2)`, () => {
     let result = sortObjectArrByPropDirectly(arrArr, 2);
     expect(result).to.eql([
-      [ 6, 3, 1, 4 ],
-      [ 7, 5, 2, 3 ],
-      [ 2, 8, 3, 2 ],
-      [ 9, 2, 4, 5 ],
-      [ 1, 7, 5, 9 ],
-      [ 8, 9, 6, 8 ],
-      [ 4, 1, 7, 1 ],
-      [ 3, 6, 8, 6 ],
-      [ 5, 4, 9, 7 ]
+      [6, 3, 1, 4],
+      [7, 5, 2, 3],
+      [2, 8, 3, 2],
+      [9, 2, 4, 5],
+      [1, 7, 5, 9],
+      [8, 9, 6, 8],
+      [4, 1, 7, 1],
+      [3, 6, 8, 6],
+      [5, 4, 9, 7]
     ]);
   });
 
@@ -176,15 +176,15 @@ describe('2) Sort Object Array by Property Directly, obtaining a list of values 
   1, "r")`, () => {
     let result = sortObjectArrByPropDirectly(arrArr, 1, "r");
     expect(result).to.eql([
-      [ 8, 9, 6, 8 ],
-      [ 2, 8, 3, 2 ],
-      [ 1, 7, 5, 9 ],
-      [ 3, 6, 8, 6 ],
-      [ 7, 5, 2, 3 ],
-      [ 5, 4, 9, 7 ],
-      [ 6, 3, 1, 4 ],
-      [ 9, 2, 4, 5 ],
-      [ 4, 1, 7, 1 ]
+      [8, 9, 6, 8],
+      [2, 8, 3, 2],
+      [1, 7, 5, 9],
+      [3, 6, 8, 6],
+      [7, 5, 2, 3],
+      [5, 4, 9, 7],
+      [6, 3, 1, 4],
+      [9, 2, 4, 5],
+      [4, 1, 7, 1]
     ]);
   })
 });

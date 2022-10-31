@@ -3,11 +3,11 @@ import { getDeepProp, getDeepPropValue, hasOwnDeepProperty } from "../getDeepPro
 
 const deepObj = { a: { b: { c: 10 } } };
 const deepProp1 = 'a.b.c';
-const deepArr = [ [ [ 20 ] ] ];
+const deepArr = [[[20]]];
 const deepProp2 = '0.0.0';
-const deepObjArr = { a: [ { b: 30 } ] };
+const deepObjArr = { a: [{ b: 30 }] };
 const deepProp3 = 'a.0.b';
-const deepArrObj = [ { a: [ 40 ] } ];
+const deepArrObj = [{ a: [40] }];
 const deepProp4 = '0.a.0';
 
 describe('4.1) Get Deep Property, receives a string and checks if one of its characters is a "." (a period); if yes, it means that an object inside an object or an array inside an array (or any combination between objects and arrays) is trying to be accessed; else, a regular, one-level deep property is trying to be accessed. The function returns an array if a deep property is received, or a number or a string if a simple, shallow property is received.', () => {
@@ -65,7 +65,7 @@ describe(`4.2) Get Deep Property's Value, access a object's deep property throug
   });
 
   it(`4.2.5) getDeepPropValue([ 50 ], 0)                           -> 50`, () => {
-    let result = getDeepPropValue([ 50 ], 0);
+    let result = getDeepPropValue([50], 0);
     expect(result).to.eql(50);
   });
 
@@ -106,9 +106,3 @@ describe(`4.3) Has Own Deep Property, checks if an object has the received deep 
     expect(result).to.eql(false);
   });
 });
-
-
-
-
-
-
