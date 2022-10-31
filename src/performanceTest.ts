@@ -3,11 +3,11 @@ import { sortObjectArrByPropDirectly } from "./sortObjArrByPropDirectly";
 import { sortObjectArrByPropIndexing } from "./sortObjArrByPropIndexing";
 import { NewLongArray, NewArrOfArrs } from "./randomNumberArrayGenerator";
 
-const showTime = (milliseconds:number):string => {
+const showTime = (milliseconds: number): string => {
   return `${((milliseconds) / 1000).toFixed(3)} seconds`
 }
 
-let numberOfArrays = parseInt(process.argv[2])*1000;
+let numberOfArrays = parseInt(process.argv[2]) * 1000;
 let eachArraySize = parseInt(process.argv[3]);
 
 if (eachArraySize < 5) {
@@ -92,7 +92,7 @@ const t17 = performance.now();
 sortObjectArrByProps(arrArrString, sortProps);
 const t18 = performance.now();
 console.log(
-  ` -> { sortObjectArrByProps(arrArrString, [0,1,...,${eachArraySize - 2},${eachArraySize-1}]) }\n    { ${showTime(t18 - t17)} }`
+  ` -> { sortObjectArrByProps(arrArrString, [0,1,...,${eachArraySize - 2},${eachArraySize - 1}]) }\n    { ${showTime(t18 - t17)} }`
 );
 
 // NUMBER
@@ -101,7 +101,7 @@ const t19 = performance.now();
 sortObjectArrByProps(arrArrNumber, sortProps);
 const t20 = performance.now();
 console.log(
-  ` -> { sortObjectArrByProps(arrArrNumber, [0,1,...,${eachArraySize - 2},${eachArraySize-1}]) }\n    { ${showTime(t20 - t19)} }`
+  ` -> { sortObjectArrByProps(arrArrNumber, [0,1,...,${eachArraySize - 2},${eachArraySize - 1}]) }\n    { ${showTime(t20 - t19)} }`
 );
 
 // STRING

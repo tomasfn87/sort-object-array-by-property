@@ -1,13 +1,13 @@
 import { prop, value, obj } from "./sortObjArrByProps";
 
 export const getDeepProp = (
-  prop:prop
-):prop | prop[] => {
+  prop: prop
+): prop | prop[] => {
   let deep = false;
   if (typeof prop === 'number') return Math.floor(prop);
   else for (let c of prop) {
     if (c === '.') {
-    deep = true; break;
+      deep = true; break;
     }
   };
   if (!!deep) return prop.split('.');
@@ -15,9 +15,9 @@ export const getDeepProp = (
 };
 
 export const getDeepPropValue = (
-  obj:obj | any,
-  propStr:prop
-):value => {
+  obj: obj | any,
+  propStr: prop
+): value => {
   let prop = getDeepProp(propStr);
 
   if (!hasOwnDeepProperty(obj, propStr)) {
@@ -25,10 +25,10 @@ export const getDeepPropValue = (
   }
 
   if (!!Array.isArray(prop)) {
-    let value:value;
-    for (let i=0; i < prop.length; i++) {
-        if (i === 0) value = obj[prop[i]]
-        else value = value[prop[i]];
+    let value: value;
+    for (let i = 0; i < prop.length; i++) {
+      if (i === 0) value = obj[prop[i]]
+      else value = value[prop[i]];
     }
     return value;
   }
@@ -36,12 +36,12 @@ export const getDeepPropValue = (
 };
 
 export const hasOwnDeepProperty = (
-  obj:obj | any,
-  propStr:prop
-):boolean => {
+  obj: obj | any,
+  propStr: prop
+): boolean => {
   let prop = getDeepProp(propStr);
   if (!!Array.isArray(prop)) {
-    for (let i=0; i < prop.length; i++) {
+    for (let i = 0; i < prop.length; i++) {
       if (obj.hasOwnProperty(prop[i])) {
         obj = obj[prop[i]];
       } else return false;
@@ -50,6 +50,6 @@ export const hasOwnDeepProperty = (
   }
   else {
     if (obj.hasOwnProperty(prop)) return true;
-  return false;
+    return false;
   }
 }

@@ -1,10 +1,10 @@
-export const NewLongArray = (arrLen:number, type:'s'|'n' = 'n'):[] => {
-  let longArray:number[] | string[] | any= [];
+export const NewLongArray = (arrLen: number, type: 's' | 'n' = 'n'): [] => {
+  let longArray: number[] | string[] | any = [];
 
   const randNum = (() => (parseInt((Math.random() * 30).toFixed())))
 
-  for (let i=0; i < arrLen; i++) {
-    type !== 's' 
+  for (let i = 0; i < arrLen; i++) {
+    type !== 's'
       ? longArray.push(randNum())
       : longArray.push(randNum().toString())
   }
@@ -13,15 +13,15 @@ export const NewLongArray = (arrLen:number, type:'s'|'n' = 'n'):[] => {
 }
 
 export const NewArrOfArrs = (
-  arrArrLength:number,
-  arrGeneratorFunc:Function,
-  eachArrLength:number,
-  eachArrOptions?:string
-):[][] => {
-  let arrArr:[][]  = [];
+  arrArrLength: number,
+  arrGeneratorFunc: Function,
+  eachArrLength: number,
+  eachArrOptions?: string
+): [][] => {
+  let arrArr: [][] = [];
 
-  for (let i=0; i < arrArrLength; i++) {
-    !!eachArrOptions 
+  for (let i = 0; i < arrArrLength; i++) {
+    !!eachArrOptions
       ? arrArr.push(arrGeneratorFunc(eachArrLength, eachArrOptions))
       : arrArr.push(arrGeneratorFunc(eachArrLength));
   }
