@@ -4,9 +4,13 @@
 
 `sort-object-array-by-property` _sorts an_ `array of objects` _or an_ `array of arrays` _according to a_ __single property__ (`objects`) _or_ __index__ (`arrays`)_, or by_ __multiple properties / indices__, through an __array of properties__ or __indices__, _including the_`length` _property_ (for `arrays` and `strings`).
 
-_It supports properties from_ __nested objects__ _and indices from_ __nested arrays__.
+<br>
 
-_Each set of values_ (the values that correspond to each property) _can be sorted independently_, _in_ __ascending__ _or_ __descending__ _order_.
+- It supports properties from `nested objects` and indices from `nested arrays`.
+
+- Each set of values (_the values that correspond to each property_) can be sorted independently, in `ascending` or `descending` order.
+
+- It supports sorting of texts with accents (`fiancée` _comes after_ `fiancee` _and before_ `fiancf`, _as a text editor would normally behave_), making it more useful for latin language users, for example.
 
 <br><br>
 
@@ -263,8 +267,7 @@ _Similarly, the snippet below_ ...
 
 ```javascript
     usersList = sortObjectArrByProps(         // <- the variable IS NOT being declared;
-        usersList,                            // <- the list to be sorted IS the same variable that will store the result;
-        [
+        usersList, [                          // <- the list to be sorted IS the same variable that will store the result;
             'birth_date',                     // <- 1st order by, then;
             'last_name',                      // <- 2nd order by, then;
             'first_name',                     // <- 3rd order by, then;
@@ -277,8 +280,7 @@ _Similarly, the snippet below_ ...
 
 ```javascript
     let sortedList = sortObjectArrByProps(    // <- the variable IS being declared;
-        list,                                 // <- the list to be sorted IS NOT the same variable that will store the result;
-        [
+        list, [                               // <- the list to be sorted IS NOT the same variable that will store the result;
             'date.year',                      // <- 1st order by, then;
             'date.month',                     // <- 2nd order by, then;
             'date.day',                       // <- 3rd order by, then;
