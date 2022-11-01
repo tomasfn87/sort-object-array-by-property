@@ -1,6 +1,5 @@
 import { expect } from "chai";
-import { sortObjectArrByProps } from "../sortObjArrByProps";
-import { removeAccents } from "../sortObjArrByProps";
+import { sortObjectArrByProps, removeAccents } from "../sortObjArrByProps";
 
 const objArr = [
   { a: 7, b: 5 },
@@ -1159,15 +1158,15 @@ describe('3) Sort Object Array by Properties, takes an array of properties whose
   });
 
   it(`3.33) ../sortObjArrByProps.ts.sortObjectArrByProps(
-    [
-      { a: 'o', b: 6 },
-      { a: 'É', b: 4 },
-      { a: 'A', b: 3 },
-      { a: 'E', b: 1 },
-      { a: 'ö', b: 5 },
-      { a: 'Á', b: 2 }
-    ]
-  )`, () => {
+    [                            [
+      { a: 'o', b: 6 },    ->        { a: 'A', b: 3 },
+      { a: 'É', b: 4 },    ->        { a: 'Á', b: 2 },
+      { a: 'A', b: 3 },    ->        { a: 'E', b: 1 },
+      { a: 'E', b: 1 },    ->        { a: 'É', b: 4 },
+      { a: 'ö', b: 5 },    ->        { a: 'o', b: 6 },
+      { a: 'Á', b: 2 }     ->        { a: 'ö', b: 5 }
+    ],                           ]
+  "a")`, () => {
     let result = sortObjectArrByProps(arrObjsWithAccentedContent, "a");
     expect(result).to.eql([
       { a: 'A', b: 3 },
@@ -1180,14 +1179,15 @@ describe('3) Sort Object Array by Properties, takes an array of properties whose
   });
 
   it(`3.34) ../sortObjArrByProps.ts.sortObjectArrByProps(
-    [
-      { a: 'o', b: 6 },
-      { a: 'É', b: 4 },
-      { a: 'A', b: 3 },
-      { a: 'E', b: 1 },
-      { a: 'ö', b: 5 },
-      { a: 'Á', b: 2 }
-    ]
+    [                            [
+      { a: 'o', b: 6 },    ->        { a: 'A', b: 3 },
+      { a: 'É', b: 4 },    ->        { a: 'Á', b: 2 },
+      { a: 'A', b: 3 },    ->        { a: 'E', b: 1 },
+      { a: 'E', b: 1 },    ->        { a: 'É', b: 4 },
+      { a: 'ö', b: 5 },    ->        { a: 'o', b: 6 },
+      { a: 'Á', b: 2 }     ->        { a: 'ö', b: 5 }
+    ],                           ]
+  ["a", "b"]
   )`, () => {
     let result = sortObjectArrByProps(arrObjsWithAccentedContent, ["a", "b"]);
     expect(result).to.eql([
@@ -1201,14 +1201,15 @@ describe('3) Sort Object Array by Properties, takes an array of properties whose
   });
 
   it(`3.35) ../sortObjArrByProps.ts.sortObjectArrByProps(
-    [
-      { a: 'o', b: 6 },
-      { a: 'É', b: 4 },
-      { a: 'A', b: 3 },
-      { a: 'E', b: 1 },
-      { a: 'ö', b: 5 },
-      { a: 'Á', b: 2 }
-    ]
+    [                            [
+      { a: 'o', b: 6 },    ->        { a: 'E', b: 1 },
+      { a: 'É', b: 4 },    ->        { a: 'Á', b: 2 },
+      { a: 'A', b: 3 },    ->        { a: 'A', b: 3 },
+      { a: 'E', b: 1 },    ->        { a: 'É', b: 4 },
+      { a: 'ö', b: 5 },    ->        { a: 'ö', b: 5 },
+      { a: 'Á', b: 2 }     ->        { a: 'o', b: 6 }
+    ],                           ]
+  ["b", "a"]
   )`, () => {
     let result = sortObjectArrByProps(arrObjsWithAccentedContent, ["b", "a"]);
     expect(result).to.eql([
