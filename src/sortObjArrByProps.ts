@@ -202,14 +202,14 @@ export const removeAccents = (text: string): string => {
     if (!text)
         return '';
     const strAccents: string[] = text.split('');
-    let strAccentsOut: string[] = new Array();
+    let strAccentsOut: string[] = new Array;
     const strAccentsLen: number = strAccents.length;
     const accents: string = "ÀÁÂÃÄÅàáâãäåÒÓÔÕÕÖØòóôõöøÈÉÊËèéêëðÇçÐÌÍÎÏìíîïÙÚÛÜùúûüÑñŠšŸÿýŽž";
     const accentsOut: string = "AAAAAAaaaaaaOOOOOOOooooooEEEEeeeeeCcDIIIIiiiiUUUUuuuuNnSsYyyZz";
     for (let i = 0; i < strAccentsLen; i++) {
         if (accents.indexOf(strAccents[i]) != -1) {
-            const size = accents.indexOf(strAccents[i])
-            strAccentsOut[i] = accentsOut.substring(size, size + 1);
+            const pos = accents.indexOf(strAccents[i])
+            strAccentsOut[i] = accentsOut.substring(pos, pos + 1);
         } else
             strAccentsOut[i] = strAccents[i];
     }
