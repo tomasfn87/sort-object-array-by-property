@@ -22,7 +22,7 @@
 
 <br><br>
 
-## 1) Install package via [`npm`](http://www.npmjs.com/package/@nighly/sort-object-array-by-property):
+## 1) Install package via [`npm`](https://bit.ly/3DWopR9):
 
 ```shell
     npm install @nighly/sort-object-array-by-property
