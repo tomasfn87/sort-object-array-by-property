@@ -10,7 +10,11 @@
 
 - Each set of values (_the values that correspond to each property_) can be sorted independently, in `ascending` or `descending` order.
 
-- It supports sorting of texts with accents (`fiancée` _comes after_ `fiancee` _and before_ `fiancf`, _as a text editor would normally behave_), making it more useful for latin language users, for example.
+- It supports sorting of texts with accents (`fiancée` _comes after_ `fiancee` _and before_ `fiancf`, _as a text editor would normally behave_), making it more useful for latin language users, for example. Be aware that this feature uses a lot of resources, so if you don't need to handle this problem, it's strongly recommended to use the previous version:
+
+```shell
+npm install @nighly/sort-object-array-by-property@1.3.1
+```
 
 <br><br>
 
