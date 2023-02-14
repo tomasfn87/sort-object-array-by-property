@@ -10,3 +10,6 @@ dist/*
 
 # misc
 performanceTest-scratch.ts
+
+# asdf
+.tool-versions
