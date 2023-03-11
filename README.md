@@ -2,6 +2,27 @@
 
 <br><br>
 
+## Table of contents
+
+- [Description](#description)
+- [Test it on a browser (`runkit.com`)](#test-with-runkit)
+- [Install](#install)
+- [Import](#import)
+  - [CommonJs](#import-cjs)
+  - [ES](#import-es)
+  - [TypeScript](#import-ts)
+- [Usage](#usage)
+  - [Single property](#usage-single-prop)
+  - [Multiple properties](#usage-multiple-props)
+  - [Nested properties](#usage-nested-props)
+  - [Reversing](#usage-reversal)
+- [Dealing with the output](#output)
+- [Examples](#examples)
+
+<br><br>
+
+## <id id="description">Description</id>
+
 `sort-object-array-by-property` _sorts an_ `array of objects` _or an_ `array of arrays` _according to a_ __single property__ (`objects`) _or_ __index__ (`arrays`)_, or by_ __multiple properties / indices__, through an __array of properties__ or __indices__, _including the_`length` _property_ (for `arrays` and `strings`).
 
 <br>
@@ -10,7 +31,9 @@
 
 - Each set of values (_the values that correspond to each property_) can be sorted independently, in `ascending` or `descending` order.
 
-- It supports sorting of texts with accents (`fiancée` _comes after_ `fiancee` _and before_ `fiancf`, _as a text editor would normally behave_), making it more useful for latin language users, for example. Be aware that this feature uses a lot of resources, so if you don't need to handle this problem, it's strongly recommended to use the previous version:
+- It supports sorting of texts with accents (`fiancée` _comes after_ `fiancee` _and before_ `fiancf`, _as a text editor would normally behave_), making it more useful for latin language users, for example.
+
+:warning: **Warning**: be aware that dealing with accentuation uses a lot of resources, so if you don't need to handle this problem, it's strongly recommended to use the previous version:
 
 ```shell
 npm install @nighly/sort-object-array-by-property@1.3.1
@@ -18,7 +41,7 @@ npm install @nighly/sort-object-array-by-property@1.3.1
 
 <br><br>
 
-## __Test it on a browser__ ([*__runkit__*](https://runkit.com/)):
+## <id id="test-with-runkit">__Test it on a browser__ ([*__runkit__*](https://runkit.com/))</id>
 
 [__sort-object-array-by-property__](https://runkit.com/tomasfn87/sort-object-array-by-property)
 
@@ -26,7 +49,7 @@ npm install @nighly/sort-object-array-by-property@1.3.1
 
 <br><br>
 
-## 1) Install package via [`npm`](https://bit.ly/3DWopR9):
+## <id id="install">1) Install package via [`npm`](https://bit.ly/3DWopR9)</id>
 
 ```shell
     npm install @nighly/sort-object-array-by-property
@@ -36,13 +59,13 @@ npm install @nighly/sort-object-array-by-property@1.3.1
 
 <br><br>
 
-## 2) Import package:
+## <id id="import">2) Import package</id>
 
 _Import function_ `sortObjectArrByProps` _by adding one of the lines below to a_ `Javascript` _or_ `Typescript` _file_:
 
 <br>
 
-### 2.1) `CommonJs`:
+### <id id="import-cjs">2.1) `CommonJs`</id>
 
 #### _How to import_:
 
@@ -82,7 +105,7 @@ _Import function_ `sortObjectArrByProps` _by adding one of the lines below to a_
 
 <br><br>
 
-### 2.2) `ES`:
+### <id id="import-es">2.2) `ES`</id>
 
 #### _How to import_:
 
@@ -104,7 +127,7 @@ _Add_ `"type": "module"` _to_ `package.json` _or change the file extension from_
 
 <br><br>
 
-### 2.3) `Typescript`:
+### <id id="import-ts">2.3) `Typescript`</id>
 
 #### _How to import_:
 
@@ -126,7 +149,7 @@ _Add_ `"type": "module"` _to_ `package.json` _or change the file extension from_
 
 <br><br>
 
-## 3) Usage:
+## <id id="usage">3) Usage</id>
 
 <br>
 
@@ -152,7 +175,7 @@ _Add_ `"type": "module"` _to_ `package.json` _or change the file extension from_
 
 _The_ `arrays` _can be sorted according to_:
 
-### 3.1) a _single property_:
+### <id id="usage-single-prop">3.1) a _single property_</id>
 
 ```javascript
 //  an object's property
@@ -164,7 +187,7 @@ _The_ `arrays` _can be sorted according to_:
 
 <br>
 
-### 3.2) _two_, _more_ or _all properties_:
+### <id id="usage-multiple-props">3.2) _two_, _more_ or _all properties_</id>
 
 ```javascript
 //  an array of objects' properties
@@ -176,7 +199,7 @@ _The_ `arrays` _can be sorted according to_:
 
 <br><br>
 
-### 3.3) _Using_ `nested objects' properties` _or_ `nested arrays' indices` _to sort_:
+### <id id="usage-nested-props">3.3) _Using_ `nested objects' properties` _or_ `nested arrays' indices` _to sort_</id>
 
 <br>
 
@@ -205,7 +228,7 @@ _Also works with combinations of_ `objects` _and_ `arrays`:
 
 <br><br>
 
-### 3.4) Reversing _all_ or _some values_:
+### <id id="usage-reversal">3.4) Reversing _all_ or _some values_</id>
 
 _The third and optional parameter,_ `reverse`_, can receive as argument a_ `string`:
 - a single `r` (_or_ `R`) will reverse the whole list;
@@ -261,7 +284,7 @@ _Similarly, the snippet below_ ...
 
 <br><br>
 
-### 4) Dealing with the _output_:
+### <id id="output">4) Dealing with the _output_</id>
 
 `sortObjectArrByProps` _returns a_ `new array`, _leaving the_ `source array` _untouched_, _so reattribute the ouput to the same variable to update the values_, _or attribute it to a new variable_, _to store the values_:
 
@@ -298,7 +321,7 @@ _Similarly, the snippet below_ ...
 
 <br><br>
 
-## 5) _Examples_:
+## <id id="examples">5) _Examples_</id>
 
 <br>
 
