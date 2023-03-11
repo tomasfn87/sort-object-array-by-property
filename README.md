@@ -21,7 +21,7 @@
 
 <br><br>
 
-## <id id="description">Description</id>
+## <span id="description">Description</span>
 
 `sort-object-array-by-property` _sorts an_ `array of objects` _or an_ `array of arrays` _according to a_ __single property__ (`objects`) _or_ __index__ (`arrays`)_, or by_ __multiple properties / indices__, through an __array of properties__ or __indices__, _including the_`length` _property_ (for `arrays` and `strings`).
 
@@ -41,7 +41,7 @@ npm install @nighly/sort-object-array-by-property@1.3.1
 
 <br><br>
 
-## <id id="test-with-runkit">__Test it on a browser__ ([*__runkit__*](https://runkit.com/))</id>
+## <span id="test-with-runkit">__Test it on a browser__ ([*__runkit__*](https://runkit.com/))</span>
 
 [__sort-object-array-by-property__](https://runkit.com/tomasfn87/sort-object-array-by-property)
 
@@ -49,7 +49,7 @@ npm install @nighly/sort-object-array-by-property@1.3.1
 
 <br><br>
 
-## <id id="install">1) Install package via [`npm`](https://bit.ly/3DWopR9)</id>
+## <span id="install">1) Install package via [`npm`](https://bit.ly/3DWopR9)</span>
 
 ```shell
     npm install @nighly/sort-object-array-by-property
@@ -59,13 +59,13 @@ npm install @nighly/sort-object-array-by-property@1.3.1
 
 <br><br>
 
-## <id id="import">2) Import package</id>
+## <span id="import">2) Import package</span>
 
 _Import function_ `sortObjectArrByProps` _by adding one of the lines below to a_ `Javascript` _or_ `Typescript` _file_:
 
 <br>
 
-### <id id="import-cjs">2.1) `CommonJs`</id>
+### <span id="import-cjs">2.1) `CommonJs`</span>
 
 #### _How to import_:
 
@@ -105,7 +105,7 @@ _Import function_ `sortObjectArrByProps` _by adding one of the lines below to a_
 
 <br><br>
 
-### <id id="import-es">2.2) `ES`</id>
+### <span id="import-es">2.2) `ES`</span>
 
 #### _How to import_:
 
@@ -127,7 +127,7 @@ _Add_ `"type": "module"` _to_ `package.json` _or change the file extension from_
 
 <br><br>
 
-### <id id="import-ts">2.3) `Typescript`</id>
+### <span id="import-ts">2.3) `Typescript`</span>
 
 #### _How to import_:
 
@@ -149,7 +149,7 @@ _Add_ `"type": "module"` _to_ `package.json` _or change the file extension from_
 
 <br><br>
 
-## <id id="usage">3) Usage</id>
+## <span id="usage">3) Usage</span>
 
 <br>
 
@@ -175,7 +175,7 @@ _Add_ `"type": "module"` _to_ `package.json` _or change the file extension from_
 
 _The_ `arrays` _can be sorted according to_:
 
-### <id id="usage-single-prop">3.1) a _single property_</id>
+### <span id="usage-single-prop">3.1) a _single property_</span>
 
 ```javascript
 //  an object's property
@@ -187,7 +187,7 @@ _The_ `arrays` _can be sorted according to_:
 
 <br>
 
-### <id id="usage-multiple-props">3.2) _two_, _more_ or _all properties_</id>
+### <span id="usage-multiple-props">3.2) _two_, _more_ or _all properties_</span>
 
 ```javascript
 //  an array of objects' properties
@@ -199,7 +199,7 @@ _The_ `arrays` _can be sorted according to_:
 
 <br><br>
 
-### <id id="usage-nested-props">3.3) _Using_ `nested objects' properties` _or_ `nested arrays' indices` _to sort_</id>
+### <span id="usage-nested-props">3.3) _Using_ `nested objects' properties` _or_ `nested arrays' indices` _to sort_</span>
 
 <br>
 
@@ -228,7 +228,7 @@ _Also works with combinations of_ `objects` _and_ `arrays`:
 
 <br><br>
 
-### <id id="usage-reversal">3.4) Reversing _all_ or _some values_</id>
+### <span id="usage-reversal">3.4) Reversing _all_ or _some values_</span>
 
 _The third and optional parameter,_ `reverse`_, can receive as argument a_ `string`:
 - a single `r` (_or_ `R`) will reverse the whole list;
@@ -284,7 +284,7 @@ _Similarly, the snippet below_ ...
 
 <br><br>
 
-### <id id="output">4) Dealing with the _output_</id>
+### <span id="output">4) Dealing with the _output_</span>
 
 `sortObjectArrByProps` _returns a_ `new array`, _leaving the_ `source array` _untouched_, _so reattribute the ouput to the same variable to update the values_, _or attribute it to a new variable_, _to store the values_:
 
@@ -321,7 +321,7 @@ _Similarly, the snippet below_ ...
 
 <br><br>
 
-## <id id="examples">5) _Examples_</id>
+## <span id="examples">5) _Examples_</span>
 
 <br>
 
